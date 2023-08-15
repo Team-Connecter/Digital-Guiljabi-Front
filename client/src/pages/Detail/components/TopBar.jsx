@@ -5,7 +5,7 @@ export const TopBar = ({ contents, modifyPost, deletePost }) => {
         <div>
             <img src={contents.thumbnailUrl} alt="" />
             <h1>{contents.title}</h1>
-            <img src="" alt="유저 프로필" />
+            <img src={contents.writerProfileUrl} alt="유저 프로필" />
             <label>{contents.writerName}</label>
             <label>{contents.updateAt}</label>
             <button onClick={modifyPost}>수정</button>

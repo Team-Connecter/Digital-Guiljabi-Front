@@ -1,22 +1,32 @@
 import React from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-export const Action = ({ contents, handleLike, handleBookmark }) => {
+export const Action = ({
+    contents,
+    handleLike,
+    handleBookmark,
+    handleRequest,
+}) => {
     const api_url = process.env.REACT_APP_API_URL;
+    const params = useParams();
 
     const toggleLike = async () => {
         try {
             if (contents.liked) {
-                await axios.delete(`${api_url}/api/v1/boards/${1}/likes`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                });
+                await axios.delete(
+                    `${api_url}/api/v1/boards/${params.id}/likes`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`,
+                        },
+                    }
+                );
             } else {
                 await axios.post(
-                    `${api_url}/api/v1/boards/${1}/likes`,
+                    `${api_url}/api/v1/boards/${params.id}/likes`,
                     {},
                     {
                         headers: {
@@ -37,16 +47,19 @@ export const Action = ({ contents, handleLike, handleBookmark }) => {
     const toggleBookmark = async () => {
         try {
             if (contents.bookmarked) {
-                await axios.delete(`${api_url}/api/v1/boards/${1}/bookmarks`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
-                });
+                await axios.delete(
+                    `${api_url}/api/v1/boards/${params.id}/bookmarks`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`,
+                        },
+                    }
+                );
             } else {
                 await axios.post(
-                    `${api_url}/api/v1/boards/${1}/bookmarks`,
+                    `${api_url}/api/v1/boards/${params.id}/bookmarks`,
                     {},
                     {
                         headers: {
@@ -74,7 +87,7 @@ export const Action = ({ contents, handleLike, handleBookmark }) => {
                 {contents.bookmarked ? "북마크 취소" : "북마크"}
             </button>
             <label>{contents.bookmarkCnt}</label>
-            <button>요청</button>
+            <button onClick={handleRequest}>요청</button>
         </div>
     );
 };

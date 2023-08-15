@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Category = ({ handleCategoryChange, categories }) => {
+export const Category = ({ handleCategoryChange, categories, handleAll }) => {
     return (
         <div>
             {categories.map((category) => (
@@ -11,6 +11,7 @@ export const Category = ({ handleCategoryChange, categories }) => {
                     {category.name}
                 </button>
             ))}
+            <button onClick={handleAll}>전체</button>
         </div>
     );
 };

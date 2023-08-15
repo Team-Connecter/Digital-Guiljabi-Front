@@ -1,9 +1,6 @@
 import "./styles/App.css";
 
-import React from "react";
-
-import { Navbar } from "./components/Navbar";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Detail, Home, My, SearchInfo, Admin, Posting, Request } from "./pages";
@@ -16,7 +13,7 @@ function App() {
         const api = process.env.REACT_APP_API_URL;
         axios
             .post(`${api}/api/login`, {
-                uid: "admin",
+                uid: "commeci",
             })
             .then((res) => {
                 if (res.data.token)
@@ -27,12 +24,11 @@ function App() {
 
     return (
         <Router>
-            <Navbar />
             <Routes>
                 <Route path="/" element={<UserLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="request" element={<Request />} />
-                    <Route path="detailInfo" element={<Detail />} />
+                    <Route path="detailInfo/:id" element={<Detail />} />
+                    <Route path="request/:id" element={<Request />} />
                     <Route path="my" element={<My />} />
                     <Route path="search" element={<SearchInfo />} />
                     <Route path="posting" element={<Posting />} />

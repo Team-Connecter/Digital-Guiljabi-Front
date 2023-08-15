@@ -30,8 +30,12 @@ export const SearchInfo = () => {
     };
 
     const handleMore = () => {
-        setCurrentPage(currentPage + 1);
+        setCurrentPage(currentPage);
         setPageSize(pageSize + 10);
+    };
+
+    const handleAll = () => {
+        setSelectCategory("");
     };
 
     useEffect(() => {
@@ -74,7 +78,7 @@ export const SearchInfo = () => {
 
         fetchPosts();
         fetchCategories();
-    }, [searchText, sortBy, selectCategory, currentPage, pageSize]);
+    }, [searchText, sortBy, selectCategory, currentPage, pageSize, api_url]);
 
     const handleSearch = () => {
         const filtered = posts.filter((post) =>
@@ -113,6 +117,7 @@ export const SearchInfo = () => {
             <Category
                 handleCategoryChange={handleCategoryChange}
                 categories={categories}
+                handleAll={handleAll}
             />
             {matchPosts ? (
                 <p>일치하는 게시물이 없습니다.</p>
