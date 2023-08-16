@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import naver from "../../assets/naver_login.png";
+import kakao from "../../assets/kakao_login.png";
+
 import axios from "axios";
 
 export const Login = () => {
@@ -26,17 +29,17 @@ export const Login = () => {
             });
     }, [navigate]);
 
-    const getLogin = async () => {
+    const getLogin = async (social) => {
         const api_url = process.env.REACT_APP_API_URL;
         try {
             const response = await axios.get(
-                `${api_url}/api/auth/kakao/login-url`
+                `${api_url}/api/auth/${social}/login-url`
             );
-            let kakaoUrl = response.data.loginUrl;
-            console.log("kakaoUrl: ", kakaoUrl);
-            kakaoUrl += `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&response_type=code`;
+            let loginUrl = response.data.loginUrl;
+            console.log("loginUrl: ", loginUrl);
+            loginUrl += `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&response_type=code`;
 
-            window.location.href = kakaoUrl;
+            window.location.href = loginUrl;
         } catch (error) {
             console.error("Error 발생 (로그인): ", error);
         }
@@ -48,9 +51,16 @@ export const Login = () => {
             <div className="login-section">
                 <div className="kakao-login">
                     <img
-                        onClick={getLogin}
-                        src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png"
+                        onClick={() => getLogin("kakao")}
+                        src={kakao}
                         alt="카카오 로그인 버튼"
+                    />
+                </div>
+                <div className="naver-login">
+                    <img
+                        onClick={() => getLogin("naver")}
+                        src={naver}
+                        alt="네이버 로그인 버튼"
                     />
                 </div>
             </div>
