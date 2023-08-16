@@ -10,12 +10,14 @@ import { UserLayout } from "./components/Layout/UserLayout";
 import { AdminLayout } from "./components/Layout/AdminLayout";
 import axios from "axios";
 
+import "./Firebase"
+
 function App() {
     useEffect(() => {
         const api = process.env.REACT_APP_API_URL;
         axios
             .post(`${api}/api/login`, {
-                uid: "admin"
+                uid: "admin
             })
             .then((res) => {
                 if (res.data.token)
