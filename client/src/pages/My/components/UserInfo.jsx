@@ -43,20 +43,34 @@ export const UserInfo = ({ user, onSave }) => {
         }
     };
 
-    const sendUpdateUserInfo = async (updatedUser) => {
-        try {
-            const response = await axios.patch(
-                `${api_url}/api/v1/users/info`,
-                updatedUser,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    }
+    const sendUpdateUserInfo = (updatedUser) => {
+        // try {
+        //     const response = await axios.patch(
+        //         `${api_url}/api/v1/users/info`,
+        //         updatedUser,
+        //         {
+        //             headers: {
+        //                 Authorization: `Bearer ${localStorage.getItem("token")}`
+        //             }
+        //         }
+        //     );
+        // } catch (error) {
+        //     console.error("Error 발생 (유저 데이터 수정) : ", error);
+        // }
+
+        // 기존코드는 위와 같이 async/await를 사용했지만, 아래와 같이 .then()을 사용하는 것이 더 좋다.
+        axios
+            .patch(`${api_url}/api/v1/users/info`, updatedUser, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-            );
-        } catch (error) {
-            console.error("Error 발생 (유저 데이터 수정) : ", error);
-        }
+            })
+            .then((response) => {
+                console.log("response: ", response);
+            })
+            .catch((error) => {
+                console.error("Error 발생 (유저 데이터 수정) : ", error);
+            });
     };
 
     const uploadProfilePicture = async (imageFile) => {

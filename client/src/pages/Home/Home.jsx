@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TrendingList from "./components/TrendingList";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import axios from "axios";
 
 export const Home = () => {
@@ -36,32 +36,38 @@ export const Home = () => {
         }
     ];
 
-    const checkName = (token) => {
-        const api_url = process.env.REACT_APP_API_URL;
-        axios.get(`${api_url}/api/v1/users/info/my`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then((response) => {
-                console.log("response: ", response);
-                if (response.data.nickname === null) {
-                    alert("닉네임을 설정해주세요.")
-                    navigate("/my");
-                }
-            })
-            .catch((error) => {
-                console.error("Error 발생 (카카오 로그인): ", error);
-            });
-    }
-
+    const checkName = useCallback(
+        (token) => {
+            const api_url = process.env.REACT_APP_API_URL;
+            axios
+                .get(`${api_url}/api/v1/users/info/my`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then((response) => {
+                    console.log("response: ", response);
+                    if (response.data.nickname === null) {
+                        alert("닉네임을 설정해주세요.");
+                        navigate("/my");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error 발생 (카카오 로그인): ", error);
+                });
+        },
+        [navigate]
+    );
 
     useEffect(() => {
         const code = new URLSearchParams(window.location.search).get("code");
         console.log("code: ", code);
         if (code) {
             const api_url = process.env.REACT_APP_API_URL;
-            axios.get(`${api_url}/api/login/kakao?code=${code}&redirectUrl=${process.env.REACT_APP_REDIRECT_URL}`)
+            axios
+                .get(
+                    `${api_url}/api/login/kakao?code=${code}&redirectUrl=${process.env.REACT_APP_REDIRECT_URL}`
+                )
                 .then((response) => {
                     console.log("response: ", response);
                     localStorage.setItem("token", response.data.token);
@@ -71,7 +77,7 @@ export const Home = () => {
                     console.error("Error 발생 (카카오 로그인): ", error);
                 });
         }
-    }, [])
+    }, [checkName]);
 
     return (
         <>
