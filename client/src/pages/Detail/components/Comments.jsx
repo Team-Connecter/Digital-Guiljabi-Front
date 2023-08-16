@@ -1,12 +1,20 @@
 import React from "react";
 
-export const Comments = ({ contents }) => {
+export const Comments = ({ contents, onDelete }) => {
     return (
         <div>
-            <img src="" alt="" />
-            <p>{contents.nickname}</p>
-            <p>{contents.text}</p>
-            <button>삭제</button>
+            <img src={contents.profileUrl} alt="프로필" />
+            <label>{contents.username}</label>
+            <label>{contents.createAt}</label>
+            <p>{contents.content}</p>
+            {contents.isMine ? (
+                <button
+                    className="button"
+                    onClick={() => onDelete(contents.commentPk)}
+                >
+                    삭제
+                </button>
+            ) : null}
         </div>
     );
 };

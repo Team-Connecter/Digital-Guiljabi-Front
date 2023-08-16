@@ -1,0 +1,1 @@
+export { WaitingPost } from "./WaitingPost"

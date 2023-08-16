@@ -1,0 +1,4 @@
+.footer {
+    background-color: rgb(var(--app-footer-background-color));
+    color: rgb(var(--white-1-color));
+}

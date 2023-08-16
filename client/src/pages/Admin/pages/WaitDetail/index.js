@@ -1,0 +1,1 @@
+export { WaitDetail } from './WaitDetail';

@@ -1,55 +1,90 @@
 import { UserInfo } from "./components/UserInfo";
 import { UserContent } from "./components/UserContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const My = () => {
-    const initUserData = {
-        nickname: "commeci",
-        joinDate: "2023-07-28",
-        id1365: "commeci1365",
-        idVMS: "commeciVMS",
-        introduction: "내 이름은 commeci! 많은 정보를 알려주기 위해 노력할게!",
-    };
+    const api_url = process.env.REACT_APP_API_URL;
+    const [userData, setUserData] = useState(null);
+    const [bookmarkData, setBookmarkData] = useState([]);
+    const [writingsData, setWritingsData] = useState([]);
 
-    const [userData, setUserData] = useState({ ...initUserData });
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get(
+                    `${api_url}/api/v1/users/info/my`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`
+                        }
+                    }
+                );
+                const userDataFromServer = response.data;
+                setUserData(userDataFromServer);
+            } catch (error) {
+                console.error("Error 발생 (유저 데이터) : ", error);
+            }
+        };
 
-    const bookmarkData = [
-        {
-            title: "bookmark1",
-            likes: 10,
-            bookmarks: 5,
-        },
-        {
-            title: "bookmark2",
-            likes: 10,
-            bookmarks: 5,
-        },
-    ];
+        const fetchBookmarkData = async () => {
+            try {
+                const response = await axios.get(
+                    `${api_url}/api/v1/bookmarks`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`
+                        }
+                    }
+                );
+                const bookmarkDataFromServer = response.data;
+                setBookmarkData(bookmarkDataFromServer.bookmarkResponses);
+            } catch (error) {
+                console.error("Error 발생 (북마크 불러오기) : ", error);
+            }
+        };
 
-    const writingsData = [
-        {
-            title: "writing1",
-            likes: 10,
-            bookmarks: 5,
-            state: "대기",
-        },
-        {
-            title: "writing2",
-            likes: 10,
-            bookmarks: 5,
-            state: "허용",
-        },
-    ];
+        const fetchWritingsData = async () => {
+            try {
+                const response = await axios.get(
+                    `${api_url}/api/v1/boards/my`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`
+                        }
+                    }
+                );
+                const writingDataFromServer = response.data;
+                setWritingsData(writingDataFromServer.list);
+            } catch (error) {
+                console.error("Error 발생 (작성 글 불러오기) : ", error);
+            }
+        };
+
+        fetchUserData();
+        fetchBookmarkData();
+        fetchWritingsData();
+    }, [api_url]);
 
     const saveUser = (editUser) => {
         setUserData({ ...editUser });
     };
 
     return (
-        <>
+        <main className="content-area__main">
             <h1>My</h1>
-            <UserInfo user={userData} onSave={saveUser} />
+            {userData === null ? (
+                <p>로딩중</p>
+            ) : (
+                <UserInfo user={userData} onSave={saveUser} />
+            )}
             <UserContent bookmarks={bookmarkData} writings={writingsData} />
-        </>
+        </main>
     );
 };

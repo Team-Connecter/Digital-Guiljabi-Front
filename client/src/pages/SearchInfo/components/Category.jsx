@@ -1,26 +1,20 @@
 import React from "react";
 
-export const Category = ({ handleCategoryChange }) => {
-    const categories = [
-        "건강",
-        "교통",
-        "스마트폰 앱",
-        "웹사이트",
-        "자동차",
-        "전자기기",
-    ];
+export const Category = ({ handleCategoryChange, categories, handleAll }) => {
     return (
         <div>
-            {categories.map((category, index) => {
-                return (
-                    <button
-                        key={index}
-                        onClick={() => handleCategoryChange(category)}
-                    >
-                        {category}
-                    </button>
-                );
-            })}
+            {categories.map((category) => (
+                <button
+                    className="button"
+                    key={category.px}
+                    onClick={() => handleCategoryChange(category.pk)}
+                >
+                    {category.name}
+                </button>
+            ))}
+            <button className="button" onClick={handleAll}>
+                전체
+            </button>
         </div>
     );
 };

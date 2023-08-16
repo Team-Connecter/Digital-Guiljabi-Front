@@ -1,0 +1,133 @@
+/**
+    ReportDetail.js
+
+    Description: This page is used to display the details of a report. It is accessed by clicking on a report in the report list.
+
+*/
+
+/**
+
+    ReportDetail header
+
+    <div className="report-header">
+        <div className="report-title">
+            <div>제목</div>
+            <div>{tempData.title}</div>
+        </div>
+        <div className="report-author">
+            <div>글쓴이</div>
+            <div>{tempData.author}</div>
+        </div>
+    </div>
+
+*/
+
+.report-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.report-header > div > div:first-child {
+    width: 100px;
+    font-weight: bold;
+}
+
+.report-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.report-title > div:first-child {
+    margin-right: 10px;
+}
+
+.report-author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.report-author > div:first-child {
+    margin-right: 10px;
+}
+
+/**
+
+    Report Info 
+    신고의 상세 사유들을 표시
+
+    <div className="report-info">
+        <div className="report-date">
+            <div>신고일시: </div>
+            <div>{date}</div>
+        </div>
+        <div className="report-name">
+            <div>신고자: </div>
+            <div>{name}</div>
+        </div>
+        <div className="report-reason">
+            <div>신고사유: </div>
+            <div>{reason}</div>
+        </div>
+    </div>
+*/
+
+.report-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    background-color: #F4F4F4;
+    padding: 20px;
+}
+
+.report-info > div > div:first-child {
+    width: 100px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.report-info > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+
+/**
+
+    Report Detail Footer
+
+    <div className="report-footer">
+        <button>숨기기 해제</button>
+        <button>신고글 삭제</button>
+    </div>
+
+*/
+
+.report-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.report-footer > button {
+    padding: 10px;
+    width: 150px;
+    margin-left: 10px;
+    border: none;
+}
+

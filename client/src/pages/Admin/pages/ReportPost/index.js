@@ -1,0 +1,1 @@
+export { ReportPost } from "./ReportPost"

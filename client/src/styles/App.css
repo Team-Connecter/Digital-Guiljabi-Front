@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+/*----- 전역 -----*/
+:root {
+    --content-max-width: 768px;
+
+    --primary-0-color: 137, 127, 252;
+    --primary-1-color: 113, 101, 251;
+    --white-0-color: 255, 255, 255;
+    --white-1-color: 245, 245, 245;
+    --white-2-color: 235, 235, 235;
+    --white-3-color: 225, 225, 225;
+
+    --app-background-color: var(--white-0-color);
+    --app-footer-background-color: 4, 6, 11;
+    --app-text-color: 50, 50, 50;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+    background-color: rgb(var(--white-0-color));
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    margin: 0;
+    color: rgb(var(--app-text-color));
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI",
+        "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", sans-serif;
+    font-size: 1em;
+    line-height: 1.5;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
-.App-link {
-  color: #61dafb;
+/*----- 레이아웃 -----*/
+
+.content-area {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content-area__header {
+    padding: 5vh 6%;
+}
+
+.content-area__main {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 5vh 6%;
+}
+
+/*----- 요소 -----*/
+
+a {
+    color: rgb(var(--primary-0-color));
+    text-underline-offset: 0.2em;
+    text-decoration-color: rgba(var(--primary-0-color), 0.4);
+    text-decoration-thickness: 0.2em;
+}
+
+.input,
+.select,
+.textarea,
+.button {
+    padding: 0.5em 1em;
+}
+
+.input {
+    border: rgba(0, 0, 0, 0.15) solid 0.125rem;
+    border-radius: 0.25rem;
+}
+
+.input[type="file"] {
+    cursor: pointer;
+}
+
+.input.primary {
+    border-color: rgb(var(--primary-0-color));
+}
+
+.select {
+    border: rgba(0, 0, 0, 0.15) solid 0.125rem;
+    border-radius: 0.25rem;
+}
+
+.textarea {
+    border: rgba(0, 0, 0, 0.15) solid 0.125rem;
+    border-radius: 0.25rem;
+}
+
+.button {
+    --button-background-color: var(--white-1-color);
+    --button-background-hover-color: var(--white-2-color);
+    --button-text-color: var(--app-text-color);
+    --button-outline-color: 0, 0, 255;
+    background-color: rgb(var(--button-background-color));
+    border: rgba(0, 0, 0, 0.15) solid 0.063rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.25rem 0.125rem rgba(0, 0, 0, 0.15);
+    color: rgb(var(--button-text-color));
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+
+.button:hover {
+    background-color: rgb(var(--button-background-hover-color));
+    border-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.25rem 0.125rem rgba(0, 0, 0, 0.3);
+}
+
+.button:focus-visible {
+    outline-color: rgba(var(--button-outline-color), 0.2);
+    outline-style: solid;
+    outline-width: 0.25rem;
+}
+
+.button.primary {
+    --button-background-color: var(--primary-0-color);
+    --button-background-hover-color: var(--primary-1-color);
+    --button-text-color: var(--white-0-color);
+    box-shadow: 0 0.25rem 0.125rem rgba(0, 0, 0, 0.25);
+}
+
+.card {
+    padding: 1.5rem;
+    border: rgb(var(--white-3-color)) solid 0.094rem;
+    border-radius: 0.5rem;
 }

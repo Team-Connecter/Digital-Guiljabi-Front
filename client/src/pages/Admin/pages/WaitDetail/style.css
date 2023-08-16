@@ -1,0 +1,43 @@
+.wait-img > div:last-child{
+    width: 100px;
+    height: 100px;
+}
+
+.wait-img > div:last-child > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wait-body > div{
+    width: 100%;
+    height: 300px;
+    align-items: flex-start !important;
+}
+.wait-body > div > div:last-child{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F4F4F4;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.wait-source {
+    height: 150px !important;
+}
+
+.wait-footer > button{
+    font-weight: bold;
+}
+.wait-footer > button:first-child{
+    background-color: #A8FF89;
+}
+.wait-footer > button:last-child{
+    background-color: #FF8282;
+}
+
+.dialog-footer > button{
+    font-weight: bold;
+    background-color: #A8FF89;
+}

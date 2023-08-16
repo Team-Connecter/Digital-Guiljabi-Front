@@ -4,13 +4,15 @@ import { PostItem } from "./PostItem";
 export const PostList = ({ posts }) => {
     return (
         <ul>
-            {posts.map((post) => {
-                return (
-                    <li key={post.id}>
+            {posts.length > 0 ? (
+                posts.map((post) => (
+                    <li className="card" key={post.id}>
                         <PostItem post={post} />
                     </li>
-                );
-            })}
+                ))
+            ) : (
+                <p>일치하는 게시글이 없습니다.</p>
+            )}
         </ul>
     );
 };
