@@ -50,10 +50,8 @@ export const UserInfo = ({ user, onSave }) => {
                 updatedUser,
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 }
             );
         } catch (error) {
@@ -74,8 +72,8 @@ export const UserInfo = ({ user, onSave }) => {
                         Authorization: `Bearer ${localStorage.getItem(
                             "token"
                         )}`,
-                        "Content-Type": "multipart/form-data",
-                    },
+                        "Content-Type": "multipart/form-data"
+                    }
                 }
             );
 
@@ -92,6 +90,7 @@ export const UserInfo = ({ user, onSave }) => {
                 <img src={user.imgUrl} alt="프로필" />
                 {editing && (
                     <input
+                        className="input"
                         type="file"
                         accept="image/*"
                         onChange={handleProfileChange}
@@ -104,6 +103,7 @@ export const UserInfo = ({ user, onSave }) => {
                         닉네임 :{" "}
                         {editing ? (
                             <input
+                                className="input"
                                 name="nickname"
                                 value={editUser.nickname ?? ""}
                                 onChange={handleInputChange}
@@ -121,6 +121,7 @@ export const UserInfo = ({ user, onSave }) => {
                         1365 아이디{" "}
                         {editing ? (
                             <input
+                                className="input"
                                 name="id1365"
                                 value={editUser.id1365 ?? ""}
                                 onChange={handleInputChange}
@@ -135,6 +136,7 @@ export const UserInfo = ({ user, onSave }) => {
                         VMS 아이디 :{" "}
                         {editing ? (
                             <input
+                                className="input"
                                 name="idVms"
                                 value={editUser.idVms ?? ""}
                                 onChange={handleInputChange}
@@ -149,6 +151,7 @@ export const UserInfo = ({ user, onSave }) => {
                     <p>
                         {editing ? (
                             <textarea
+                                className="textarea"
                                 name="introduction"
                                 value={editUser.introduction ?? ""}
                                 onChange={handleInputChange}
@@ -161,9 +164,13 @@ export const UserInfo = ({ user, onSave }) => {
             </div>
             <div>
                 {editing ? (
-                    <button onClick={handleSaveClick}>저장</button>
+                    <button className="button" onClick={handleSaveClick}>
+                        저장
+                    </button>
                 ) : (
-                    <button onClick={handleEditClick}>편집</button>
+                    <button className="button" onClick={handleEditClick}>
+                        편집
+                    </button>
                 )}
             </div>
         </div>

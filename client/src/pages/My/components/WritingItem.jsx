@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const WritingItem = ({ writing }) => {
     return (
-        <li>
+        <li className="card">
             <img src={writing.thumbnail} alt="" />
             <h3>
                 <Link to={`/detailInfo/${writing.boardPk}`}>

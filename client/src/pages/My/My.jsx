@@ -18,8 +18,8 @@ export const My = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
                 const userDataFromServer = response.data;
@@ -37,8 +37,8 @@ export const My = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
                 const bookmarkDataFromServer = response.data;
@@ -56,8 +56,8 @@ export const My = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
                 const writingDataFromServer = response.data;
@@ -77,7 +77,7 @@ export const My = () => {
     };
 
     return (
-        <>
+        <main className="content-area__main">
             <h1>My</h1>
             {userData === null ? (
                 <p>로딩중</p>
@@ -85,6 +85,6 @@ export const My = () => {
                 <UserInfo user={userData} onSave={saveUser} />
             )}
             <UserContent bookmarks={bookmarkData} writings={writingsData} />
-        </>
+        </main>
     );
 };

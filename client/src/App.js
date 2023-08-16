@@ -1,10 +1,11 @@
 import "./styles/App.css";
+import "./styles/App-fonts.css";
 
-import { Navbar } from "./components/Navbar"
+import { Navbar } from "./components/Navbar";
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Detail, Home, My, SearchInfo, Admin, Posting, Request } from "./pages";
+import { Detail, Home, My, SearchInfo, Admin, Posting, Request, Login } from "./pages";
 import { UserLayout } from "./components/Layout/UserLayout";
 import { AdminLayout } from "./components/Layout/AdminLayout";
 import axios from "axios";
@@ -16,7 +17,7 @@ function App() {
         const api = process.env.REACT_APP_API_URL;
         axios
             .post(`${api}/api/login`, {
-                uid: "user",
+                uid: "admin
             })
             .then((res) => {
                 if (res.data.token)
@@ -37,6 +38,7 @@ function App() {
                     <Route path="my" element={<My />} />
                     <Route path="search" element={<SearchInfo />} />
                     <Route path="posting" element={<Posting />} />
+                    <Route path="login" element={<Login />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Admin />} />
