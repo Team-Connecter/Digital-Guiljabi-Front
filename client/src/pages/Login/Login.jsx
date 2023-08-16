@@ -34,8 +34,7 @@ export const Login = () => {
             );
             let kakaoUrl = response.data.loginUrl;
             console.log("kakaoUrl: ", kakaoUrl);
-            kakaoUrl +=
-                "&redirect_uri=http://localhost:3000&response_type=code";
+            kakaoUrl += `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&response_type=code`;
 
             window.location.href = kakaoUrl;
         } catch (error) {
