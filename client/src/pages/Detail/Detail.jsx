@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { TopBar } from "./components/TopBar";
@@ -18,7 +18,7 @@ export const Detail = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const fetchPostData = async () => {
+    const fetchPostData = useCallback(async () => {
         try {
             const response = await axios.get(
                 `${api_url}/api/v1/boards/${params.id}`,
@@ -34,11 +34,11 @@ export const Detail = () => {
         } catch (error) {
             console.error("Error 발생 (게시글): ", error);
         }
-    };
+    }, [api_url, params.id]);
 
     useEffect(() => {
         fetchPostData();
-    }, [api_url, params.id]);
+    }, [api_url, params.id, fetchPostData]);
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -63,7 +63,7 @@ export const Detail = () => {
         };
 
         fetchComments();
-    }, [comments, api_url, params.id]);
+    }, [comments, api_url, params.id, size]);
 
     const handleCommentSubmit = async (commentText) => {
         const newComment = {

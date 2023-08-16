@@ -70,7 +70,7 @@ export const My = () => {
         fetchUserData();
         fetchBookmarkData();
         fetchWritingsData();
-    }, []);
+    }, [api_url]);
 
     const saveUser = (editUser) => {
         setUserData({ ...editUser });
