@@ -21,18 +21,18 @@ import { AdminLayout } from "./components/Layout/AdminLayout";
 import "./Firebase";
 
 function App() {
-    useEffect(() => {
-        const api = process.env.REACT_APP_API_URL;
-        axios
-            .post(`${api}/api/login`, {
-                uid: "commeci"
-            })
-            .then((res) => {
-                if (res.data.token)
-                    localStorage.setItem("token", res.data.token);
-            })
-            .catch((err) => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     const api = process.env.REACT_APP_API_URL;
+    //     axios
+    //         .post(`${api}/api/login`, {
+    //             uid: "commeci"
+    //         })
+    //         .then((res) => {
+    //             if (res.data.token)
+    //                 localStorage.setItem("token", res.data.token);
+    //         })
+    //         .catch((err) => console.log(err));
+    // }, []);
 
     return (
         <Router>
