@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import { Content } from "./Components/Content";
@@ -6,6 +7,8 @@ import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
 
 export const Posting = () => {
+    const { id } = useParams();
+
     // 초기 데이터
     // 1. 타이틀 및 소개글
     // 2. 컨텐츠
@@ -110,10 +113,25 @@ export const Posting = () => {
         };
         console.log(JSON.stringify(payload));
 
+        // 게시물 등록
+        if (id) {
+            axios
+                .patch(`${api}/api/v1/boards`, payload, { headers })
+                .then((res) => {
+                    // 게시물 등록 성공 시 my페이지로 이동
+                    if (res.status === 200) {
+                        alert("게시글 등록요청이 완료되었습니다.");
+                        window.location.href = "/my";
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+
         axios
             .post(`${api}/api/v1/boards`, payload, { headers })
             .then((res) => {
-                console.log(res);
                 // 게시물 등록 성공 시 my페이지로 이동
                 if (res.status === 200) {
                     alert("게시글 등록요청이 완료되었습니다.");
@@ -148,6 +166,52 @@ export const Posting = () => {
                 return <div>error</div>;
         }
     };
+
+    // 게시물 수정시
+    useEffect(() => {
+        if (id) {
+            const api = process.env.REACT_APP_API_URL;
+            console.log("id", id);
+            axios
+                .get(`${api}/api/v1/boards/${id}`)
+                .then((res) => {
+                    console.log(res);
+                    const data = res.data;
+
+                    const newData = [
+                        {
+                            type: "title",
+                            data: {
+                                title: data.title,
+                                img_url: data.thumbnailUrl,
+                                content: data.introduction
+                            }
+                        },
+                        ...data.cards.map((d) => {
+                            return {
+                                type: "content",
+                                data: {
+                                    title: d.subTitle,
+                                    img_url: d.imgUrl,
+                                    content: d.content
+                                }
+                            };
+                        }),
+                        {
+                            type: "footer",
+                            data: {
+                                tags: data.tags.join(","),
+                                source: data.sources.join("\n")
+                            }
+                        }
+                    ];
+                    setData(newData);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+    }, [id]);
 
     return (
         <main className="content-area__main">
