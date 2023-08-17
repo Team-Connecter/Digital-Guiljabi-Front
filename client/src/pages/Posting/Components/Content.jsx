@@ -1,13 +1,5 @@
 export const Content = ({ props }) => {
-    const { no, data, updateData, nextStep, prevStep, addStep } = props;
-
-    const update = (e) => {
-        updateData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    };
-
+    const { no, data, update, nextStep, prevStep, addStep } = props;
     return (
         <div>
             <div className="content-header">

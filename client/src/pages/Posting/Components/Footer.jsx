@@ -1,11 +1,5 @@
 export const Footer = ({ props, save }) => {
-    const { data, prevStep, updateData } = props;
-    const update = (e) => {
-        updateData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    };
+    const { data, prevStep, update } = props;
 
     return (
         <div className="footer">

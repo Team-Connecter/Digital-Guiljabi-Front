@@ -1,12 +1,5 @@
 export const Title = ({ props }) => {
-    const { data, updateData, nextStep } = props;
-
-    const update = (e) => {
-        updateData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    };
+    const { data, update, nextStep } = props;
 
     return (
         <div className="title">
@@ -29,12 +22,12 @@ export const Title = ({ props }) => {
                 />
             </div>
             <div>
+                <img src={data.img_url} alt="이미지 미리보기" />
                 <input
                     className="input"
                     name="img_url"
                     type="file"
                     onChange={update}
-                    value={data.img_url}
                 />
             </div>
 
