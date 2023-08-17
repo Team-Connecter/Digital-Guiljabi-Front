@@ -10,7 +10,7 @@ export default function TrendingList({ trendingData }) {
                         <Link to={`/detailinfo/${item.id}`}>{item.title}</Link>
                     </h3>
                     <p>{item.description}</p>
-                    <span>Likes: {item.likes}</span>
+                    <span>좋아요: {item.likes}</span>
                 </div>
             ))}
         </div>
