@@ -10,8 +10,12 @@ export const TopBar = ({ contents, modifyPost, deletePost }) => {
             <label>{contents.updateAt}</label>
             {contents.isMine ? (
                 <>
-                    <button onClick={modifyPost}>수정</button>
-                    <button onClick={deletePost}>삭제</button>
+                    <button className="button" onClick={modifyPost}>
+                        수정
+                    </button>
+                    <button className="button" onClick={deletePost}>
+                        삭제
+                    </button>
                 </>
             ) : null}
         </div>

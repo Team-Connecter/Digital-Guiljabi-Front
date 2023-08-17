@@ -1,14 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { FileUpload } from "../../modules/FileUpload";
 
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
 
 export const Posting = () => {
-
-    
-
     // 초기 데이터
     // 1. 타이틀 및 소개글
     // 2. 컨텐츠
@@ -21,7 +19,7 @@ export const Posting = () => {
             data: {
                 title: "",
                 img_url: "",
-                content: "",
+                content: ""
             }
         },
         {
@@ -29,28 +27,27 @@ export const Posting = () => {
             data: {
                 title: "",
                 img_url: "",
-                content: "",
+                content: ""
             }
         },
         {
             type: "footer",
             data: {
                 tags: "",
-                source: "",
+                source: ""
             }
         }
-    ])
+    ]);
 
     const nextStep = () => {
         if (step === data.length - 1) return;
         setStep(step + 1);
-    }
+    };
 
     const prevStep = () => {
         if (step === 0) return;
         setStep(step - 1);
-    }
-
+    };
 
     /**
      * 컨텐츠의 단계를 추가하는 함수
@@ -65,17 +62,15 @@ export const Posting = () => {
                 data: {
                     title: "",
                     img_url: "",
-                    content: "",
-                },
-            
+                    content: ""
+                }
             },
             ...data.slice(step + 1)
         ]);
 
         // 단계를 추가하면 바로 다음 단계로 이동한다.
         setStep(step + 1);
-    }
-
+    };
 
     /**
      * 데이터를 업데이트하는 함수
@@ -91,14 +86,14 @@ export const Posting = () => {
             },
             ...data.slice(s + 1)
         ]);
-    }
+    };
 
     const save = () => {
         const api = process.env.REACT_APP_API_URL;
         const token = localStorage.getItem("token");
         const headers = {
             Authorization: `Bearer ${token}`
-        }
+        };
 
         const payload = {
             title: data[0].data.title,
@@ -109,22 +104,41 @@ export const Posting = () => {
                     subTitle: d.data.title,
                     content: d.data.content,
                     imgUrl: d.data.img_url
-                }
+                };
             }),
             tags: data[data.length - 1].data.tags.split(","),
             sources: data[data.length - 1].data.source.split("\n")
-        }
+        };
         console.log(JSON.stringify(payload));
 
-        axios.post(`${api}/api/v1/boards`, payload, { headers })
+        axios
+            .post(`${api}/api/v1/boards`, payload, { headers })
             .then((res) => {
                 console.log(res);
             })
             .catch((err) => {
                 console.error(err);
-            })
-    }
+            });
+    };
 
+    //
+    const update = (e) => {
+        // check if file is uploaded
+        if (e.target.files) {
+            let url = FileUpload(e.target.files[0]);
+            console.log("url: ", url);
+            updateData({
+                ...data,
+                [e.target.name]: url
+            });
+            return;
+        }
+
+        updateData({
+            ...data,
+            [e.target.name]: e.target.value
+        });
+    };
 
     const loadComponent = () => {
         const props = {
@@ -133,27 +147,25 @@ export const Posting = () => {
             nextStep,
             prevStep,
             addStep,
-            updateData : (d) => {updateData(step, d)}
-        }
+            update
+        };
 
         switch (data[step].type) {
             case "title":
-                return <Title props={props} />
+                return <Title props={props} />;
             case "content":
-                return <Content props={props} />
+                return <Content props={props} />;
             case "footer":
-                return <Footer props={props} save={save} />
+                return <Footer props={props} save={save} />;
             default:
-                return <div>error</div>
+                return <div>error</div>;
         }
-    }
-
-
+    };
 
     return (
-        <div>
+        <main className="content-area__main">
             {step}
             {loadComponent()}
-        </div>
-    )
+        </main>
+    );
 };

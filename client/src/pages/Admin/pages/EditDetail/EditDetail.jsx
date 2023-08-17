@@ -2,55 +2,53 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { EditDialog } from "./Components/EditDialog";
-import "./style.css"
+import "./style.css";
 import axios from "axios";
 
 export const EditDetail = () => {
     const { id } = useParams();
     const api = process.env.REACT_APP_API_URL;
 
-    const [data, setData] = useState(null);  
+    const [data, setData] = useState(null);
     useEffect(() => {
-        axios.get(
-            `${api}/api/v1/admin/edit-requests/${id}`,
-            // {},
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
+        axios
+            .get(
+                `${api}/api/v1/admin/edit-requests/${id}`,
+                // {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 }
-            }
-        )
-            .then(res => {
+            )
+            .then((res) => {
                 setData(res.data);
                 console.log(res.data);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error(err);
-            })
+            });
     }, [api, id]);
-
 
     const [dialog, setDialog] = useState(false);
     const closeDialog = () => setDialog(false);
     const openDialog = () => setDialog(true);
 
     const ignoreEdit = () => {
-        axios.delete(
-            `${api}/api/v1/admin/edit-requests/${id}/ignore`,
-            {
+        axios
+            .delete(`${api}/api/v1/admin/edit-requests/${id}/ignore`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-            }
-        )
-        .then(res => {
-            console.log(res);
-            window.location.href = "/admin/service/edit"
-        })
-        .catch(err => {
-            console.error(err);
-        })
-    }
+            })
+            .then((res) => {
+                console.log(res);
+                window.location.href = "/admin/service/edit";
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
 
     return (
         <section className="container">
@@ -76,16 +74,18 @@ export const EditDetail = () => {
 
             <div className="edit-body">
                 <div>요청사유</div>
-                <div className="edit-reason">
-                    {data?.content}
-                </div>
+                <div className="edit-reason">{data?.content}</div>
             </div>
 
             <div className="edit-footer detail-footer">
-                <button onClick={openDialog}>작성자에게 알리기</button>
-                <button onClick={ignoreEdit}>무시하기</button>
+                <button className="button" onClick={openDialog}>
+                    작성자에게 알리기
+                </button>
+                <button className="button" onClick={ignoreEdit}>
+                    무시하기
+                </button>
             </div>
             {dialog && <EditDialog close={closeDialog} pk={data.boardPk} />}
         </section>
-    )
+    );
 };

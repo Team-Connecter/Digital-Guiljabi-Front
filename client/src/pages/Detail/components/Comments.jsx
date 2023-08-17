@@ -8,7 +8,10 @@ export const Comments = ({ contents, onDelete }) => {
             <label>{contents.createAt}</label>
             <p>{contents.content}</p>
             {contents.isMine ? (
-                <button onClick={() => onDelete(contents.commentPk)}>
+                <button
+                    className="button"
+                    onClick={() => onDelete(contents.commentPk)}
+                >
                     삭제
                 </button>
             ) : null}

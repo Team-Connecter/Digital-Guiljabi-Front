@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { TopBar } from "./components/TopBar";
@@ -18,16 +18,14 @@ export const Detail = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const fetchPostData = async () => {
+    const fetchPostData = useCallback(async () => {
         try {
             const response = await axios.get(
                 `${api_url}/api/v1/boards/${params.id}`,
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 }
             );
             const postDataFromServer = response.data;
@@ -36,11 +34,11 @@ export const Detail = () => {
         } catch (error) {
             console.error("Error 발생 (게시글): ", error);
         }
-    };
+    }, [api_url, params.id]);
 
     useEffect(() => {
         fetchPostData();
-    }, [api_url, params.id]);
+    }, [api_url, params.id, fetchPostData]);
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -53,8 +51,8 @@ export const Detail = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
                 const commentsData = response.data;
@@ -65,11 +63,11 @@ export const Detail = () => {
         };
 
         fetchComments();
-    }, [comments, api_url, params.id]);
+    }, [comments, api_url, params.id, size]);
 
     const handleCommentSubmit = async (commentText) => {
         const newComment = {
-            content: commentText,
+            content: commentText
         };
 
         try {
@@ -78,10 +76,8 @@ export const Detail = () => {
                 newComment,
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 }
             );
 
@@ -97,10 +93,8 @@ export const Detail = () => {
             if (window.confirm("해당 댓글을 정말 삭제하시겠습니까?")) {
                 await axios.delete(`${api_url}/api/v1/comments/${commentPk}`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 });
                 alert("삭제되었습니다.");
             } else {
@@ -120,10 +114,8 @@ export const Detail = () => {
             if (window.confirm("해당 게시글을 정말 삭제하시겠습니까?")) {
                 await axios.delete(`${api_url}/api/v1/boards/${params.id}`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 });
                 alert("삭제되었습니다.");
             } else {
@@ -148,8 +140,8 @@ export const Detail = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
             } else {
@@ -160,8 +152,8 @@ export const Detail = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
             }
@@ -180,8 +172,8 @@ export const Detail = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
             } else {
@@ -192,8 +184,8 @@ export const Detail = () => {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem(
                                 "token"
-                            )}`,
-                        },
+                            )}`
+                        }
                     }
                 );
             }
@@ -212,7 +204,7 @@ export const Detail = () => {
             {post === null ? (
                 <p>로딩중</p>
             ) : (
-                <>
+                <main className="content-area__main">
                     <TopBar
                         contents={post}
                         modifyPost={handleModifyPost}
@@ -245,7 +237,7 @@ export const Detail = () => {
                         />
                     ))}
                     <CommentMore handleMoreClick={handleMoreClick} />
-                </>
+                </main>
             )}
         </div>
     );

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const BookmarkItem = ({ bookmark }) => {
     return (
-        <li>
+        <li className="card">
             <img src={bookmark.thumbnail} alt="" />
             <h3>
                 <Link to={`/detailInfo/${bookmark.boardPk}`}>

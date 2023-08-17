@@ -12,8 +12,12 @@ export const UserContent = ({ bookmarks, writings }) => {
     return (
         <div>
             <div>
-                <button onClick={() => tabClick("bookmark")}>Bookmark</button>
-                <button onClick={() => tabClick("writing")}>Writing</button>
+                <button className="button" onClick={() => tabClick("bookmark")}>
+                    Bookmark
+                </button>
+                <button className="button" onClick={() => tabClick("writing")}>
+                    Writing
+                </button>
             </div>
             {activeTab === "bookmark" && (
                 <ul>
