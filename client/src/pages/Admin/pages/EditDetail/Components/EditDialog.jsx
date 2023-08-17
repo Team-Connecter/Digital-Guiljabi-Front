@@ -14,7 +14,9 @@ export const EditDialog = ({ close, pk }) => {
         }
         ).then((res) => {
             console.log(res);
-            close();
+            alert("알림이 전송되었습니다.");
+            window.location.href = "/admin/service/edit";
+            // close();
         }).catch((err) => {
             console.error(err);
             alert("알림 전송에 실패했습니다.")

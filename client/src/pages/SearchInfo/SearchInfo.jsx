@@ -3,6 +3,7 @@ import { PostList } from "./components/PostList";
 import { Category } from "./components/Category";
 import { SeeMore } from "./components/SeeMore";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const SearchInfo = () => {
     const api_url = process.env.REACT_APP_API_URL;
@@ -16,6 +17,7 @@ export const SearchInfo = () => {
     const [categories, setCategories] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const navigate = useNavigate();
 
     const searchChange = (e) => {
         setSearchText(e.target.value);
@@ -58,7 +60,7 @@ export const SearchInfo = () => {
                 setFilteredPosts([...testDataFromServer.list]);
                 setPosts([...testDataFromServer.list]);
             } catch (error) {
-                console.error("Error : ", error);
+                console.error("Error 발생 (게시글 목록 불러오기) : ", error);
             } finally {
                 setLoading(false);
             }
@@ -96,6 +98,10 @@ export const SearchInfo = () => {
         return <p>로딩중입니다.</p>;
     }
 
+    const handleWritePost = () => {
+        navigate("/posting");
+    };
+
     return (
         <div>
             <h1>Search</h1>
@@ -125,7 +131,7 @@ export const SearchInfo = () => {
                 <PostList posts={filteredPosts} />
             )}
             <SeeMore handleMore={handleMore} />
-            <button>글 작성</button>
+            <button onClick={handleWritePost}>글 작성</button>
         </div>
     );
 };

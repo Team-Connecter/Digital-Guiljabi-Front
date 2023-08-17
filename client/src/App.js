@@ -1,5 +1,6 @@
 import "./styles/App.css";
 
+import { Navbar } from "./components/Navbar";
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -27,8 +28,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<UserLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="detailInfo/:id" element={<Detail />} />
                     <Route path="request/:id" element={<Request />} />
+                    <Route path="detailInfo/:id" element={<Detail />} />
                     <Route path="my" element={<My />} />
                     <Route path="search" element={<SearchInfo />} />
                     <Route path="posting" element={<Posting />} />

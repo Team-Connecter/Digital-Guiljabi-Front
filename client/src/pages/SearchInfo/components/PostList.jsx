@@ -11,7 +11,7 @@ export const PostList = ({ posts }) => {
                     </li>
                 ))
             ) : (
-                <p>no post</p>
+                <p>일치하는 게시글이 없습니다.</p>
             )}
         </ul>
     );

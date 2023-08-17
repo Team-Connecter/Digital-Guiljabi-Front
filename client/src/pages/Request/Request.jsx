@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export const Request = () => {
     const api_url = process.env.REACT_APP_API_URL;
@@ -7,6 +8,7 @@ export const Request = () => {
     const [showReportOptions, setShowReportOptions] = useState(true);
     const [reason, setReason] = useState("");
     const [reportType, setRepotType] = useState("");
+    const param = useParams();
 
     const optionChange = (e) => {
         const selectedValue = e.target.value;
@@ -42,7 +44,7 @@ export const Request = () => {
                 };
             }
             const response = await axios.post(
-                `${api_url}/api/v1/boards/${3}/${selectedOption}`,
+                `${api_url}/api/v1/boards/${param.id}/${selectedOption}`,
                 requestData,
                 {
                     headers: {
@@ -53,9 +55,9 @@ export const Request = () => {
                 }
             );
             console.log(response);
-            alert("요청 제출 성공");
+            alert("요청이 성공적으로 제출되었습니다.");
         } catch (error) {
-            console.error("Error : ", error);
+            console.error("Error 발생 (요청 제출) : ", error);
         }
     };
 
