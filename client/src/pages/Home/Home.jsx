@@ -61,22 +61,26 @@ export const Home = () => {
 
     useEffect(() => {
         const code = new URLSearchParams(window.location.search).get("code");
+        const state = new URLSearchParams(window.location.search).get("state");
         console.log("code: ", code);
-        if (code) {
-            const api_url = process.env.REACT_APP_API_URL;
-            axios
-                .get(
-                    `${api_url}/api/login/kakao?code=${code}&redirectUrl=${process.env.REACT_APP_REDIRECT_URL}`
-                )
-                .then((response) => {
-                    console.log("response: ", response);
-                    localStorage.setItem("token", response.data.token);
-                    checkName(response.data.token);
-                })
-                .catch((error) => {
-                    console.error("Error 발생 (카카오 로그인): ", error);
-                });
-        }
+        console.log("state: ", state);
+
+        const api_url = process.env.REACT_APP_API_URL;
+        let loginApi = `${api_url}/api/login`;
+        if (state === "") loginApi += `/naver?code=${code}&state=`;
+        else if (code)
+            loginApi += `/kakao?code=${code}&redirectUrl=${process.env.REACT_APP_REDIRECT_URL}`;
+        else return;
+        axios
+            .get(loginApi)
+            .then((response) => {
+                console.log("response: ", response);
+                localStorage.setItem("token", response.data.token);
+                checkName(response.data.token);
+            })
+            .catch((error) => {
+                console.error("Error 발생 (로그인): ", error);
+            });
     }, [checkName]);
 
     return (

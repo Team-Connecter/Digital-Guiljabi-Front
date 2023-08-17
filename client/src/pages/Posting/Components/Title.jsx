@@ -1,7 +1,20 @@
+import { FileUpload } from "../../../modules/FileUpload";
+
 export const Title = ({ props }) => {
     const { data, updateData, nextStep } = props;
 
     const update = (e) => {
+        // check if file is uploaded
+        if (e.target.files) {
+            let url = FileUpload(e.target.files[0]);
+            console.log("url: ", url);
+            updateData({
+                ...data,
+                [e.target.name]: url
+            });
+            return;
+        }
+
         updateData({
             ...data,
             [e.target.name]: e.target.value
@@ -29,12 +42,12 @@ export const Title = ({ props }) => {
                 />
             </div>
             <div>
+                <img src={data.img_url} alt="이미지 미리보기" />
                 <input
                     className="input"
                     name="img_url"
                     type="file"
                     onChange={update}
-                    value={data.img_url}
                 />
             </div>
 
