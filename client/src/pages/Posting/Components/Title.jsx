@@ -1,5 +1,25 @@
+import { FileUpload } from "../../../modules/FileUpload";
+
 export const Title = ({ props }) => {
-    const { data, update, nextStep } = props;
+    const { data, updateData, nextStep } = props;
+
+    const update = (e) => {
+        // check if file is uploaded
+        if (e.target.files) {
+            let url = FileUpload(e.target.files[0]);
+            console.log("url: ", url);
+            updateData({
+                ...data,
+                [e.target.name]: url
+            });
+            return;
+        }
+
+        updateData({
+            ...data,
+            [e.target.name]: e.target.value
+        });
+    };
 
     return (
         <div className="title">
