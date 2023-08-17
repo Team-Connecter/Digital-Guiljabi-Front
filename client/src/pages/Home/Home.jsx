@@ -67,7 +67,7 @@ export const Home = () => {
 
         const api_url = process.env.REACT_APP_API_URL;
         let loginApi = `${api_url}/api/login`;
-        if (state == "") loginApi += `/naver?code=${code}&state=`;
+        if (state === "") loginApi += `/naver?code=${code}&state=`;
         else if (code)
             loginApi += `/kakao?code=${code}&redirectUrl=${process.env.REACT_APP_REDIRECT_URL}`;
         else return;

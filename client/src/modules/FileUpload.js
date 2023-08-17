@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect } from "react";
+// import axios from "axios";
+// import { useEffect } from "react";
 
 export const FileUpload = (file) => {
     if (!file) {
@@ -16,7 +16,7 @@ export const FileUpload = (file) => {
     }
 
     let imgUrl =
-        "https://kr.object.ncloudstorage.com/connecter-image/" + "img_test.png";
+        "https://kr.object.ncloudstorage.com/connecter-image/img_test.png";
 
     // useEffect(() => {
     //     const api_url = process.env.REACT_APP_API_URL;
