@@ -93,7 +93,11 @@ export const SearchInfo = () => {
     };
 
     if (loading) {
-        return <p>로딩중입니다.</p>;
+        return (
+            <main className="content-area__main">
+                <p>불러오는 중입니다.</p>
+            </main>
+        );
     }
 
     const handleWritePost = () => {
@@ -102,7 +106,7 @@ export const SearchInfo = () => {
 
     return (
         <main className="content-area__main">
-            <h1>Search</h1>
+            <h1>검색</h1>
             <div>
                 <input
                     className="input primary"

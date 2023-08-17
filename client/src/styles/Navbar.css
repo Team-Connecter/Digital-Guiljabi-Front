@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    padding: 1rem 2rem;
+    background-color: rgb(var(--app-background-color));
+    border-bottom: 0.124rem solid rgb(var(--white-3-color));
+}
+
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbar__logo img {
+    height: 5vmax;
+}
+
+.navbar__links {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
