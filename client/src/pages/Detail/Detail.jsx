@@ -21,12 +21,7 @@ export const Detail = () => {
     const fetchPostData = useCallback(async () => {
         try {
             const response = await axios.get(
-                `${api_url}/api/v1/boards/${params.id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
+                `${api_url}/api/v1/boards/${params.id}`
             );
             const postDataFromServer = response.data;
 
@@ -46,14 +41,7 @@ export const Detail = () => {
                 const response = await axios.get(
                     `${api_url}/api/v1/boards/${
                         params.id
-                    }/comments?size=${size}&page=${1}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem(
-                                "token"
-                            )}`
-                        }
-                    }
+                    }/comments?size=${size}&page=${1}`
                 );
                 const commentsData = response.data;
                 setComments(commentsData.comments);
