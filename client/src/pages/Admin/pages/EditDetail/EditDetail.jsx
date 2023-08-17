@@ -27,7 +27,7 @@ export const EditDetail = () => {
             .catch(err => {
                 console.error(err);
             })
-    }, []);
+    }, [api, id]);
 
 
     const [dialog, setDialog] = useState(false);

@@ -23,7 +23,7 @@ export const ReportDetail = () => {
                 setData(res.data);
             })
             .catch(err => console.error(err));
-    }, [])
+    }, [id])
 
     const postRemove = () => {
         const api = process.env.REACT_APP_API_URL;

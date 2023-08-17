@@ -42,12 +42,12 @@ export const Posting = () => {
     ])
 
     const nextStep = () => {
-        if (step == data.length - 1) return;
+        if (step === data.length - 1) return;
         setStep(step + 1);
     }
 
     const prevStep = () => {
-        if (step == 0) return;
+        if (step === 0) return;
         setStep(step - 1);
     }
 
@@ -143,6 +143,8 @@ export const Posting = () => {
                 return <Content props={props} />
             case "footer":
                 return <Footer props={props} save={save} />
+            default:
+                return <div>error</div>
         }
     }
 

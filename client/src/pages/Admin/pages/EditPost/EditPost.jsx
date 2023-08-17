@@ -1,11 +1,11 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { usePosts } from "../../../../hooks/usePosts"
 import { PostTable } from "../../Components/PostTable"
 
 export const EditPost = () => {
 
-    const [params, setParams] = useState({});
-    const posts = usePosts("edit-requests", params);
+    // const [params, setParams] = useState({});
+    const posts = usePosts("edit-requests", {});
 
     return (
         <section className="container">

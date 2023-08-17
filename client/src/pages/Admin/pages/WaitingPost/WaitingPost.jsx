@@ -1,4 +1,4 @@
-import { useState } from "react";
+//import { useState } from "react";
 
 import { PostTable } from "../../Components/PostTable"
 import { usePosts } from "../../../../hooks/usePosts";
@@ -6,8 +6,8 @@ import "../../../../styles/admin.css"
 
 export const WaitingPost = () => {
 
-    const [params, setParams] = useState({});
-    const posts = usePosts("boards/waiting", params);
+    //const [params, setParams] = useState({});
+    const posts = usePosts("boards/waiting", {});
 
     return (
         <section className="container">
