@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { FileUpload } from "../../modules/FileUpload";
 
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
@@ -120,6 +121,25 @@ export const Posting = () => {
             });
     };
 
+    //
+    const update = (e) => {
+        // check if file is uploaded
+        if (e.target.files) {
+            let url = FileUpload(e.target.files[0]);
+            console.log("url: ", url);
+            updateData({
+                ...data,
+                [e.target.name]: url
+            });
+            return;
+        }
+
+        updateData({
+            ...data,
+            [e.target.name]: e.target.value
+        });
+    };
+
     const loadComponent = () => {
         const props = {
             data: data[step].data,
@@ -127,9 +147,7 @@ export const Posting = () => {
             nextStep,
             prevStep,
             addStep,
-            updateData: (d) => {
-                updateData(step, d);
-            }
+            update
         };
 
         switch (data[step].type) {
