@@ -19,12 +19,21 @@ export const Detail = () => {
     const navigate = useNavigate();
 
     const fetchPostData = useCallback(async () => {
+        const header = localStorage.getItem("token")
+            ? {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`
+                  }
+              }
+            : {};
+
         try {
             const response = await axios.get(
-                `${api_url}/api/v1/boards/${params.id}`
+                `${api_url}/api/v1/boards/${params.id}`,
+                header
             );
             const postDataFromServer = response.data;
-
+            console.log(postDataFromServer);
             setPost(postDataFromServer);
         } catch (error) {
             console.error("Error 발생 (게시글): ", error);
@@ -37,11 +46,22 @@ export const Detail = () => {
 
     useEffect(() => {
         const fetchComments = async () => {
+            const header = localStorage.getItem("token")
+                ? {
+                      headers: {
+                          Authorization: `Bearer ${localStorage.getItem(
+                              "token"
+                          )}`
+                      }
+                  }
+                : {};
+
             try {
                 const response = await axios.get(
                     `${api_url}/api/v1/boards/${
                         params.id
-                    }/comments?size=${size}&page=${1}`
+                    }/comments?size=${size}&page=${1}`,
+                    header
                 );
                 const commentsData = response.data;
                 setComments(commentsData.comments);
