@@ -1,26 +1,22 @@
 import "../styles/Navbar.css";
+import logo from "../assets/logo.svg";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Navbar = () => {
     const navigate = useNavigate();
-
     return (
-        <div className="navbar">
-            <div className="navbar__logo">
-                <h1>Logo</h1>
+        <nav className="navbar">
+            <div className="navbar__logo" onClick={() => navigate("/")}>
+                <img src={logo} alt="디지털 길잡이 로고"></img>
             </div>
             <div className="navbar__links">
-                <button onClick={() => navigate("/")}>Home</button>
-                <button onClick={() => navigate("/about")}>About</button>
-                <button onClick={() => navigate("/contact")}>Contact</button>
-                <button onClick={() => navigate("/request")}>Request</button>
-                <button onClick={() => navigate("/detailInfo")}>Detail</button>
-                <button onClick={() => navigate("/my")}>My</button>
-                <button onClick={() => navigate("/search")}>Search</button>
-                <button onClick={() => navigate("/admin")}>Admin</button>
-                <button onClick={() => navigate("/posting")}>Posting</button>
+                <Link to="/my">내 정보</Link>
+                <Link to="/search">검색</Link>
+                <Link to="/admin">Admin</Link>
+                <Link to="/posting">Posting</Link>
+                <Link to="/login">로그인</Link>
             </div>
-        </div>
+        </nav>
     );
 };

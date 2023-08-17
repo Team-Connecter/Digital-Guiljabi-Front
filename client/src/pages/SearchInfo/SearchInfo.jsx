@@ -89,7 +89,11 @@ export const SearchInfo = () => {
     };
 
     if (loading) {
-        return <p>로딩중입니다.</p>;
+        return (
+            <main className="content-area__main">
+                <p>불러오는 중입니다.</p>
+            </main>
+        );
     }
 
     const handleWritePost = () => {
@@ -97,18 +101,25 @@ export const SearchInfo = () => {
     };
 
     return (
-        <div>
-            <h1>Search</h1>
+        <main className="content-area__main">
+            <h1>검색</h1>
             <div>
                 <input
+                    className="input primary"
                     type="text"
                     placeholder="검색어를 입력하세요."
                     value={searchText}
                     onChange={searchChange}
                 />
-                <button onClick={handleSearch}>검색</button>
+                <button className="button primary" onClick={handleSearch}>
+                    검색
+                </button>
                 <label>
-                    <select value={sortBy} onChange={sortChange}>
+                    <select
+                        className="select"
+                        value={sortBy}
+                        onChange={sortChange}
+                    >
                         <option value="POP">인기순</option>
                         <option value="NEW">최신순</option>
                     </select>
@@ -125,7 +136,9 @@ export const SearchInfo = () => {
                 <PostList posts={filteredPosts} />
             )}
             <SeeMore handleMore={handleMore} />
-            <button onClick={handleWritePost}>글 작성</button>
-        </div>
+            <button className="button primary" onClick={handleWritePost}>
+                글 작성
+            </button>
+        </main>
     );
 };
