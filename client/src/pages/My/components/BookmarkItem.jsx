@@ -11,8 +11,8 @@ export const BookmarkItem = ({ bookmark }) => {
                 </Link>
             </h3>
             <p>{bookmark.createAt}</p>
-            <p>Likes: {bookmark.likeCnt}</p>
-            <p>Books: {bookmark.bookmarkCnt}</p>
+            <p>좋아요: {bookmark.likeCnt}</p>
+            <p>북마크: {bookmark.bookmarkCnt}</p>
         </li>
     );
 };
