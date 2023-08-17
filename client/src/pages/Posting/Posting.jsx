@@ -114,6 +114,11 @@ export const Posting = () => {
             .post(`${api}/api/v1/boards`, payload, { headers })
             .then((res) => {
                 console.log(res);
+                // 게시물 등록 성공 시 my페이지로 이동
+                if (res.status === 200) {
+                    alert("게시글 등록요청이 완료되었습니다.");
+                    window.location.href = "/my";
+                }
             })
             .catch((err) => {
                 console.error(err);
