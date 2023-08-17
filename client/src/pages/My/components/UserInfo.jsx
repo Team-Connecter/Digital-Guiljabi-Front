@@ -118,7 +118,7 @@ export const UserInfo = ({ user, onSave }) => {
                 </div>
                 <div>
                     <p>
-                        1365 아이디{" "}
+                        1365 아이디 :{" "}
                         {editing ? (
                             <input
                                 name="id1365"
