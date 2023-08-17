@@ -26,7 +26,7 @@ export const UserContent = ({ bookmarks, writings }) => {
                             <BookmarkItem key={index} bookmark={bookmark} />
                         ))
                     ) : (
-                        <p>북마크 목록이 없습니다.</p>
+                        <p>즐겨찾기 목록이 없습니다.</p>
                     )}
                 </ul>
             )}

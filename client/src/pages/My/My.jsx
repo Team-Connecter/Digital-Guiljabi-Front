@@ -44,7 +44,7 @@ export const My = () => {
                 const bookmarkDataFromServer = response.data;
                 setBookmarkData(bookmarkDataFromServer.bookmarkResponses);
             } catch (error) {
-                console.error("Error 발생 (북마크 불러오기) : ", error);
+                console.error("Error 발생 (즐겨찾기 불러오기) : ", error);
             }
         };
 
@@ -78,9 +78,9 @@ export const My = () => {
 
     return (
         <main className="content-area__main">
-            <h1>My</h1>
+            <h1>내 정보</h1>
             {userData === null ? (
-                <p>로딩중</p>
+                <p>불러오는 중입니다.</p>
             ) : (
                 <UserInfo user={userData} onSave={saveUser} />
             )}

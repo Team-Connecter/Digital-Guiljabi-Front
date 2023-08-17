@@ -3,6 +3,9 @@ import TrendingList from "./components/TrendingList";
 import { useCallback, useEffect } from "react";
 import axios from "axios";
 
+import styles from "../../styles/modules/Home.module.css";
+import logo from "../../assets/logo.svg";
+
 export const Home = () => {
     const navigate = useNavigate();
     const exampleTrendingData = [
@@ -85,14 +88,18 @@ export const Home = () => {
 
     return (
         <>
-            <header className="content-area__header">
+            <header className={`content-area__header ${styles.header}`}>
                 <div>
-                    <img src="" alt="디지털 길잡이 로고" />
+                    <img
+                        className={styles.logo}
+                        src={logo}
+                        alt="디지털 길잡이 로고"
+                    />
                 </div>
-                <h1>디지털 길잡이</h1>
+                <h1 className={styles.title}>디지털 길잡이</h1>
                 <p>모두가 기술의 수평선상에 서는 온라인 도움말 프로젝트</p>
                 <input
-                    className="input primary"
+                    className={`input primary ${styles.search}`}
                     type="search"
                     placeholder="알고 싶은 것을 검색해 보세요."
                 />
