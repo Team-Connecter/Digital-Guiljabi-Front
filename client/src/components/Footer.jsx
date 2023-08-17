@@ -1,28 +1,21 @@
 import "../styles/Footer.css";
+import logo from "../assets/connecter.svg";
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
-    const navigate = useNavigate();
-
     return (
         <footer className="footer">
             <div className="footer__logo">
-                <h1>Team-Connecter</h1>
-                <p>
-                    © 2023 <strong>디지털 길잡이</strong>
-                </p>
+                <img src={logo} alt="커넥터 로고"></img>
             </div>
             <div className="footer__links">
-                <button onClick={() => navigate("/")}>Home</button>
-                <button onClick={() => navigate("/about")}>About</button>
-                <button onClick={() => navigate("/contact")}>Contact</button>
-                <button onClick={() => navigate("/request")}>Request</button>
-                <button onClick={() => navigate("/detailInfo")}>Detail</button>
-                <button onClick={() => navigate("/my")}>My</button>
-                <button onClick={() => navigate("/search")}>Search</button>
-                <button onClick={() => navigate("/admin")}>Admin</button>
-                <button onClick={() => navigate("/posting")}>Posting</button>
+                <p>© 2023 디지털 길잡이</p>
+                <p>
+                    <Link to="/policy">이용 약관</Link> |{" "}
+                    <Link to="/privacy">개인정보 처리방침</Link> |{" "}
+                    <a href="mailto:id@domain">문의</a>
+                </p>
             </div>
         </footer>
     );

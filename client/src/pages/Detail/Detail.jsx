@@ -191,7 +191,7 @@ export const Detail = () => {
             }
             fetchPostData();
         } catch (error) {
-            console.error("Error 발생 (북마크) : ", error);
+            console.error("Error 발생 (즐겨찾기) : ", error);
         }
     };
 
@@ -202,7 +202,9 @@ export const Detail = () => {
     return (
         <div>
             {post === null ? (
-                <p>로딩중</p>
+                <main className="content-area__main">
+                    <p>불러오는 중입니다.</p>
+                </main>
             ) : (
                 <main className="content-area__main">
                     <TopBar

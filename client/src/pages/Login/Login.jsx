@@ -46,8 +46,8 @@ export const Login = () => {
     };
 
     return (
-        <>
-            <h1>Login</h1>
+        <main className="content-area__main">
+            <h1>로그인</h1>
             <div className="login-section">
                 <div className="kakao-login">
                     <img
@@ -64,6 +64,6 @@ export const Login = () => {
                     />
                 </div>
             </div>
-        </>
+        </main>
     );
 };

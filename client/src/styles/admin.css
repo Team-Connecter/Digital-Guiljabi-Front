@@ -1,4 +1,4 @@
-.Admin-Title{
+.Admin-Title {
     width: 100%;
     height: 60px;
     background-color: #f5f5f5;
@@ -14,7 +14,6 @@
     margin: 0;
     padding: 0;
 }
-
 
 /**
 
@@ -127,9 +126,8 @@
     font-weight: 600;
 }
 
-
-
-.container{
+.container {
+    background-color: rgb(var(--app-background-color));
     width: calc(100% - 250px);
     height: calc(100vh - 61px);
     position: fixed;
@@ -139,7 +137,6 @@
     padding: 20px;
     overflow-y: auto;
 }
-
 
 /**
 
@@ -210,14 +207,11 @@
     cursor: pointer;
 }
 
-
 .post-table tbody tr:hover {
     background-color: #f5f5f5;
 }
 
-
-
-.detail-header{
+.detail-header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -255,14 +249,12 @@
     border: none;
 }
 
-
-
 /**
     다이얼로그 스타일 
 
 */
 
-.dialog-section{
+.dialog-section {
     width: 100%;
     height: 100%;
 
@@ -270,10 +262,10 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.dialog{
+.dialog {
     width: 500px;
     height: 300px;
     background-color: white;
@@ -286,7 +278,7 @@
     transform: translate(-50%, -50%);
 }
 
-.dialog-header{
+.dialog-header {
     width: 100%;
     height: 50px;
 
@@ -296,7 +288,7 @@
     font-weight: bold;
 }
 
-.dialog-close{
+.dialog-close {
     position: absolute;
     top: 10px;
     right: 20px;
