@@ -12,8 +12,12 @@ export const UserContent = ({ bookmarks, writings }) => {
     return (
         <div>
             <div>
-                <button onClick={() => tabClick("bookmark")}>Bookmark</button>
-                <button onClick={() => tabClick("writing")}>Writing</button>
+                <button className="button" onClick={() => tabClick("bookmark")}>
+                    Bookmark
+                </button>
+                <button className="button" onClick={() => tabClick("writing")}>
+                    Writing
+                </button>
             </div>
             {activeTab === "bookmark" && (
                 <ul>
@@ -22,7 +26,7 @@ export const UserContent = ({ bookmarks, writings }) => {
                             <BookmarkItem key={index} bookmark={bookmark} />
                         ))
                     ) : (
-                        <p>북마크 목록이 없습니다.</p>
+                        <p>즐겨찾기 목록이 없습니다.</p>
                     )}
                 </ul>
             )}

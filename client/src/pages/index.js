@@ -5,3 +5,4 @@ export { My } from "./My";
 export { SearchInfo } from "./SearchInfo";
 export { Admin } from "./Admin";
 export { Posting } from "./Posting";
+export { Login } from "./Login";

@@ -1,0 +1,35 @@
+.footer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5vh;
+    margin-top: 2rem;
+    padding: 5vh 6%;
+    background-color: rgb(var(--app-footer-background-color));
+    color: rgb(var(--white-1-color));
+}
+
+.footer::before {
+    position: absolute;
+    top: -0.4rem;
+    left: 0;
+    width: 100%;
+    border-top: 0.8rem dotted rgb(var(--app-footer-background-color));
+    content: "";
+}
+
+.footer__logo {
+    width: 5rem;
+}
+
+.footer__links a {
+    color: rgba(var(--white-3-color), 0.4);
+    font-size: 0.8em;
+    text-decoration: none;
+    word-break: keep-all;
+}
+
+.footer__links a:hover {
+    text-decoration: underline;
+}

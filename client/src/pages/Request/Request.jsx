@@ -36,11 +36,11 @@ export const Request = () => {
             if (selectedOption === "reports") {
                 requestData = {
                     type: reportType,
-                    content: reason,
+                    content: reason
                 };
             } else if (selectedOption === "edit-requests") {
                 requestData = {
-                    content: reason,
+                    content: reason
                 };
             }
             const response = await axios.post(
@@ -48,10 +48,8 @@ export const Request = () => {
                 requestData,
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 }
             );
             console.log(response);
@@ -62,7 +60,7 @@ export const Request = () => {
     };
 
     return (
-        <div>
+        <main className="content-area__main">
             <h1>Request</h1>
             <label>
                 <input
@@ -127,6 +125,7 @@ export const Request = () => {
             )}
             <br></br>
             <textarea
+                className="textarea"
                 value={reason}
                 onChange={reasonChange}
                 placeholder="해당 요청 사유를 입력하세요"
@@ -134,7 +133,9 @@ export const Request = () => {
                 cols={50}
             />
             <br></br>
-            <button onClick={submitReason}>제출</button>
-        </div>
+            <button className="button primary" onClick={submitReason}>
+                제출
+            </button>
+        </main>
     );
 };
