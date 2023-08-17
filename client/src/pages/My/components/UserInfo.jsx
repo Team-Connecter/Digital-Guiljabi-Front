@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FileUpload } from "../../../modules/FileUpload";
 
 export const UserInfo = ({ user, onSave }) => {
     const api_url = process.env.REACT_APP_API_URL;
@@ -40,6 +41,9 @@ export const UserInfo = ({ user, onSave }) => {
                 setProfilePicture(reader.result);
             };
             reader.readAsDataURL(file);
+
+            const imgUrl = FileUpload(file);
+            setEditUser((prevUser) => ({ ...prevUser, imgUrl: imgUrl }));
         }
     };
 
