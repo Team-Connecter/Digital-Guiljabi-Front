@@ -49,11 +49,7 @@ export const SearchInfo = () => {
                     apiUrl = `${api_url}/api/v1/boards?categoryPk=${selectCategory}&q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
                 }
 
-                const response = await axios.get(apiUrl, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    }
-                });
+                const response = await axios.get(apiUrl);
                 const testDataFromServer = response.data;
                 setFilteredPosts([...testDataFromServer.list]);
                 setPosts([...testDataFromServer.list]);
