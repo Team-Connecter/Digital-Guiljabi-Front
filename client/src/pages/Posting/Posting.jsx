@@ -167,6 +167,31 @@ export const Posting = () => {
         }
     };
 
+    // 로그인 여부 확인
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("로그인이 필요합니다.");
+            window.location.href = "/login";
+        }
+        axios
+            .get(`${process.env.REACT_APP_API_URL}/api/v1/users/info/my`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((res) => {
+                if (res.data.isTokenValid === false) {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = "/login";
+                }
+            })
+            .catch((err) => {
+                alert("로그인이 필요합니다.");
+                window.location.href = "/login";
+            });
+    }, []);
+
     // 게시물 수정시
     useEffect(() => {
         if (id) {
