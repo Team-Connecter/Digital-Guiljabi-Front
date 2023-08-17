@@ -132,7 +132,7 @@ export const UserInfo = ({ user, onSave }) => {
                 </div>
                 <div>
                     <p>
-                        1365 아이디{" "}
+                        1365 아이디 :{" "}
                         {editing ? (
                             <input
                                 className="input"
@@ -161,8 +161,8 @@ export const UserInfo = ({ user, onSave }) => {
                     </p>
                 </div>
                 <div>
-                    <p>한줄소개</p>
                     <p>
+                        한줄소개 :
                         {editing ? (
                             <textarea
                                 className="textarea"
