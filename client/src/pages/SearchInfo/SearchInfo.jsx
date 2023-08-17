@@ -78,7 +78,7 @@ export const SearchInfo = () => {
 
         fetchPosts();
         fetchCategories();
-    }, [searchText, sortBy, selectCategory, currentPage, pageSize]);
+    }, [searchText, sortBy, selectCategory, currentPage, pageSize, api_url]);
 
     const handleSearch = () => {
         const filtered = posts.filter((post) =>

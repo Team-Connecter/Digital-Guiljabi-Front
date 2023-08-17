@@ -1,6 +1,6 @@
 import "./styles/App.css";
 
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/Navbar"
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function App() {
         const api = process.env.REACT_APP_API_URL;
         axios
             .post(`${api}/api/login`, {
-                uid: "commeci",
+                uid: "admin",
             })
             .then((res) => {
                 if (res.data.token)
@@ -25,10 +25,10 @@ function App() {
 
     return (
         <Router>
-            <Navbar />
             <Routes>
                 <Route path="/" element={<UserLayout />}>
                     <Route index element={<Home />} />
+                    <Route path="request/:id" element={<Request />} />
                     <Route path="detailInfo/:id" element={<Detail />} />
                     <Route path="request/:id" element={<Request />} />
                     <Route path="detailInfo" element={<Detail />} />

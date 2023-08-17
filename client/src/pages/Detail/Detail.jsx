@@ -33,7 +33,7 @@ export const Detail = () => {
 
     useEffect(() => {
         fetchPostData();
-    }, []);
+    }, [api_url, params.id]);
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -51,7 +51,7 @@ export const Detail = () => {
         };
 
         fetchComments();
-    }, [comments]);
+    }, [comments, api_url, params.id]);
 
     const handleCommentSubmit = async (commentText) => {
         const newComment = {
