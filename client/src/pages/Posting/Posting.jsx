@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+import styles from "../../styles/modules/Posting.module.css";
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
@@ -113,14 +114,14 @@ export const Posting = () => {
         };
         console.log(JSON.stringify(payload));
 
-        // 게시물 등록
+        // 도움말 등록
         if (id) {
             axios
                 .patch(`${api}/api/v1/boards`, payload, { headers })
                 .then((res) => {
-                    // 게시물 등록 성공 시 my페이지로 이동
+                    // 도움말 등록 성공 시 my페이지로 이동
                     if (res.status === 201) {
-                        alert("게시글 등록요청이 완료되었습니다.");
+                        alert("도움말 등록요청이 완료되었습니다.");
                         window.location.href = "/my";
                     }
                 })
@@ -131,10 +132,10 @@ export const Posting = () => {
             axios
                 .post(`${api}/api/v1/boards`, payload, { headers })
                 .then((res) => {
-                    // 게시물 등록 성공 시 my페이지로 이동
+                    // 도움말 등록 성공 시 my페이지로 이동
                     console.log(res);
                     if (res.status === 201) {
-                        alert("게시글 등록요청이 완료되었습니다.");
+                        alert("도움말 등록요청이 완료되었습니다.");
                         window.location.href = "/my";
                     }
                 })
@@ -193,7 +194,7 @@ export const Posting = () => {
             });
     }, []);
 
-    // 게시물 수정시
+    // 도움말 수정시
     useEffect(() => {
         if (id) {
             const api = process.env.REACT_APP_API_URL;

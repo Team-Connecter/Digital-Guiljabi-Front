@@ -66,7 +66,7 @@ export const Login = () => {
                 >
                     <img src={naver} alt="네이버 로그인 버튼" />
                 </div>
-                <p class={styles.terms}>
+                <p className={styles.terms}>
                     처음 로그인하여 회원가입을 진행하면
                     <br />
                     <Link to="/policy">이용 약관</Link>과{" "}

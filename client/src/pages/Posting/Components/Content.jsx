@@ -54,6 +54,7 @@ export const Content = ({ props }) => {
                     name="content"
                     value={data.content}
                     onChange={update}
+                    rows="10"
                 />
             </div>
 
@@ -65,7 +66,7 @@ export const Content = ({ props }) => {
                 <button className="button" onClick={addStep}>
                     단계 추가
                 </button>
-                <button className="button" onClick={nextStep}>
+                <button className="button primary" onClick={nextStep}>
                     다음 단계로
                 </button>
             </div>
