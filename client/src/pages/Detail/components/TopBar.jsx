@@ -8,8 +8,8 @@ export const TopBar = ({ contents, modifyPost, deletePost }) => {
             )}
             <h1>{contents.title}</h1>
             <img src={contents.writerProfileUrl} alt="이미지 영역" />
-            <label>{contents.writerName}</label>
-            <label>{contents.updateAt}</label>
+            <label>{contents.writerName} </label>
+            <label>{contents.updateAt} </label>
             {contents.isMine ? (
                 <>
                     <button className="button" onClick={modifyPost}>
