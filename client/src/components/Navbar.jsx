@@ -15,25 +15,27 @@ export const Navbar = () => {
     );
     const [showAddMenu, setShowAddMenu] = useState(false);
     useEffect(() => {
-        const api = process.env.REACT_APP_API_URL;
-        if (!localStorage.getItem("token")) setIsLogin(false);
-        axios
-            .get(`${api}/api/v1/users/info/my`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            })
-            .then((res) => {
-                setIsLogin(true);
-                setUserprofile(
-                    res.data.imgUrl === null
-                        ? "https://boonbaebucket.s3.ap-northeast-2.amazonaws.com/point.png"
-                        : res.data.imgUrl
-                );
-            })
-            .catch((err) => {
-                setIsLogin(false);
-            });
+        setTimeout(() => {
+            const api = process.env.REACT_APP_API_URL;
+            if (!localStorage.getItem("token")) setIsLogin(false);
+            axios
+                .get(`${api}/api/v1/users/info/my`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                })
+                .then((res) => {
+                    setIsLogin(true);
+                    setUserprofile(
+                        res.data.imgUrl === null
+                            ? "https://boonbaebucket.s3.ap-northeast-2.amazonaws.com/point.png"
+                            : res.data.imgUrl
+                    );
+                })
+                .catch((err) => {
+                    setIsLogin(false);
+                });
+        }, 1000);
     }, []);
 
     useEffect(() => {
