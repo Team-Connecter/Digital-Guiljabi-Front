@@ -20,8 +20,8 @@ export const PostItem = ({ post }) => {
                     </ul>
                 )}
             </div>
-            <p>Likes: {post.likeCnt}</p>
-            <p>Bookmarks: {post.bookmarkCnt}</p>
+            <p>좋아요: {post.likeCnt}</p>
+            <p>북마크: {post.bookmarkCnt}</p>
         </div>
     );
 };
