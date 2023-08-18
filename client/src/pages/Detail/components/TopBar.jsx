@@ -3,7 +3,7 @@ import React from "react";
 export const TopBar = ({ contents, modifyPost, deletePost }) => {
     return (
         <div>
-            {contents.thumnailUrl && (
+            {contents.thumbnailUrl && (
                 <img src={contents.thumbnailUrl} alt="이미지" />
             )}
             <h1>{contents.title}</h1>
