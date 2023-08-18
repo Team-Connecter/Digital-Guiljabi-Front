@@ -45,7 +45,11 @@ export const SearchInfo = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                let apiUrl = `${api_url}/api/v1/boards?q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+                let apiUrl = `${api_url}/api/v1/boards?pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+
+                if (searchText) {
+                    apiUrl = `${api_url}/api/v1/boards?q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+                }
 
                 if (selectCategory) {
                     apiUrl = `${api_url}/api/v1/boards?categoryPk=${selectCategory}&q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
