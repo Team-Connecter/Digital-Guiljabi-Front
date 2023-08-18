@@ -262,6 +262,7 @@
 }
 .title-img img {
     cursor: pointer;
+    width: auto;
     height: 100%;
 }
 
