@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// import styles from "../../styles/modules/Posting.module.css";
+import styles from "../../styles/modules/Posting.module.css";
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
@@ -73,6 +73,15 @@ export const Posting = () => {
 
         // 단계를 추가하면 바로 다음 단계로 이동한다.
         setStep(step + 1);
+    };
+
+    const delStep = () => {
+        if (data.length === 3) {
+            alert("최소 1개의 컨텐츠가 있어야 합니다.");
+            return;
+        }
+        setData([...data.slice(0, step), ...data.slice(step + 1)]);
+        setStep(step - 1);
     };
 
     /**
@@ -152,6 +161,7 @@ export const Posting = () => {
             nextStep,
             prevStep,
             addStep,
+            delStep,
             updateData: (d) => {
                 updateData(step, d);
             }
@@ -242,7 +252,26 @@ export const Posting = () => {
 
     return (
         <main className="content-area__main">
-            {step}
+            <form className={styles.box} data-max={data.length}>
+                {data.map((d, i) => {
+                    return (
+                        <>
+                            <input
+                                class={styles["sr-only"]}
+                                type="radio"
+                                name="step-3"
+                                id={`step-3-${i + 1}`}
+                                checked={step === i}
+                            />
+                            <label
+                                class={styles.step}
+                                for={`step-3-${i + 1}`}
+                            ></label>
+                        </>
+                    );
+                })}
+                <hr />
+            </form>
             {loadComponent()}
         </main>
     );

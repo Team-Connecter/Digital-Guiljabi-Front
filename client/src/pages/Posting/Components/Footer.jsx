@@ -1,5 +1,7 @@
 import { FileUpload } from "../../../modules/FileUpload";
 
+import styles from "../../../styles/modules/Posting.module.css";
+
 export const Footer = ({ props, save }) => {
     const { data, prevStep, updateData } = props;
     const update = (e) => {
@@ -23,28 +25,32 @@ export const Footer = ({ props, save }) => {
     };
 
     return (
-        <div className="footer">
+        <div className={styles["footer"]}>
             <div>
-                <h1>해시태그 입력</h1>
-                <input
-                    className="input"
-                    type="#해시태그"
-                    name="tags"
-                    onChange={update}
-                    value={data.tags}
-                />
-            </div>
-            <div>
-                <h1>출처입력</h1>
-                <textarea
-                    className="textarea"
-                    name="source"
-                    onChange={update}
-                    value={data.source}
-                />
+                <div>
+                    <h1>해시태그 입력</h1>
+                    <input
+                        className="input"
+                        type="#해시태그"
+                        name="tags"
+                        onChange={update}
+                        value={data.tags}
+                        style={{ width: "100%", marginBottom: "10px" }}
+                    />
+                </div>
+                <div>
+                    <h1>출처입력</h1>
+                    <textarea
+                        className="textarea"
+                        name="source"
+                        onChange={update}
+                        value={data.source}
+                        style={{ width: "100%", marginBottom: "10px" }}
+                    />
+                </div>
             </div>
 
-            <div className="">
+            <div className={styles["content-footer"]}>
                 <button className="button" onClick={prevStep}>
                     뒤로
                 </button>
