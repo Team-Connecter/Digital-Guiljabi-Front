@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "../../styles/modules/Home.module.css";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo_round.svg";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -79,25 +79,35 @@ export const Home = () => {
     return (
         <>
             <header className={`content-area__header ${styles.header}`}>
-                <div>
+                <section className={styles.sectionBrand}>
                     <img
                         className={styles.logo}
                         src={logo}
                         alt="디지털 길잡이 로고"
                     />
-                </div>
-                <h1 className={styles.title}>디지털 길잡이</h1>
-                <p>모두가 기술의 수평선상에 서는 온라인 도움말 프로젝트</p>
-                <input
-                    className={`input primary ${styles.search}`}
-                    type="search"
-                    placeholder="알고 싶은 것을 검색해 보세요."
-                    onKeyDown={search}
-                />
+                    <div>
+                        <h1 className={styles.title}>디지털 길잡이</h1>
+                        <p>
+                            모두가 기술의 수평선상에 서는 온라인 도움말 프로젝트
+                        </p>
+                    </div>
+                </section>
+                <section className={styles.sectionSearch}>
+                    <input
+                        className={`input primary ${styles.search}`}
+                        type="search"
+                        placeholder="알고 싶은 것을 검색해 보세요."
+                        onKeyDown={search}
+                    />
+                    <button className="button primary" onClick={search}>
+                        검색
+                    </button>
+                </section>
             </header>
+            <hr />
             <main className="content-area__main">
                 <section>
-                    <h2>인기 있는 게시글</h2>
+                    <h2>인기 있는 도움말</h2>
                     <TrendingList trendingData={popPost} />
                     <button
                         className="button primary"

@@ -13,7 +13,7 @@ export const Privacy = () => {
             <p>○ 이 개인정보 처리방침은 2023년 8월 18부터 적용됩니다.</p>
             <ol className={styles.listTerms}>
                 <li>
-                    <h2>개인정보의 처리 목적</h2>
+                    <h2 className={styles.heading}>개인정보의 처리 목적</h2>
                     <p>
                         <a href="/">디지털 길잡이</a>는 다음의 목적을 위하여
                         개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의
@@ -41,7 +41,9 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>개인정보의 처리 및 보유 기간</h2>
+                    <h2 className={styles.heading}>
+                        개인정보의 처리 및 보유 기간
+                    </h2>
                     <ol className={styles.listCircledDecimal}>
                         <li>
                             디지털 길잡이는 법령에 따른 개인정보 보유·이용 기간
@@ -66,7 +68,7 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>처리하는 개인정보의 항목</h2>
+                    <h2 className={styles.heading}>처리하는 개인정보의 항목</h2>
                     <ol className={styles.listCircledDecimal}>
                         <li>
                             디지털 길잡이는 다음의 개인정보 항목을 처리하고
@@ -84,7 +86,9 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>개인정보의 파기 절차 및 파기 방법</h2>
+                    <h2 className={styles.heading}>
+                        개인정보의 파기 절차 및 파기 방법
+                    </h2>
                     <ol className={styles.listCircledDecimal}>
                         <li>
                             디지털 길잡이는 개인정보 보유기간의 경과, 처리목적
@@ -124,7 +128,7 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>
+                    <h2 className={styles.heading}>
                         정보주체와 법정대리인의 권리·의무 및 그 행사 방법에 관한
                         사항
                     </h2>
@@ -169,7 +173,9 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>개인정보의 안전성 확보 조치에 관한 사항</h2>
+                    <h2 className={styles.heading}>
+                        개인정보의 안전성 확보 조치에 관한 사항
+                    </h2>
                     <ol>
                         <li>
                             개인정보에 대한 접근 제한 개인정보를 처리하는
@@ -208,7 +214,7 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>
+                    <h2 className={styles.heading}>
                         개인정보를 자동으로 수집하는 장치의 설치·운영 및 그
                         거부에 관한 사항
                     </h2>
@@ -216,12 +222,16 @@ export const Privacy = () => {
                     불러오는 ‘쿠키(cookie)’를 사용하지 않습니다.
                 </li>
                 <li>
-                    <h2>행태정보의 수집·이용·제공 및 거부 등에 관한 사항</h2>
+                    <h2 className={styles.heading}>
+                        행태정보의 수집·이용·제공 및 거부 등에 관한 사항
+                    </h2>
                     디지털 길잡이는 온라인 맞춤형 광고 등을 위한 행태정보를
                     수집·이용·제공하지 않습니다.
                 </li>
                 <li>
-                    <h2>개인정보 보호 책임자에 관한 사항</h2>
+                    <h2 className={styles.heading}>
+                        개인정보 보호 책임자에 관한 사항
+                    </h2>
                     <ol className={styles.listCircledDecimal}>
                         <li>
                             디지털 길잡이는 개인정보 처리에 관한 업무를 총괄해서
@@ -277,7 +287,9 @@ export const Privacy = () => {
                     </ol>
                 </li>
                 <li>
-                    <h2>정보주체의 권익침해에 대한 구제 방법</h2>
+                    <h2 className={styles.heading}>
+                        정보주체의 권익침해에 대한 구제 방법
+                    </h2>
                     정보주체는 개인정보 침해로 인한 구제를 받기 위하여
                     개인정보분쟁조정위원회, 한국인터넷진흥원
                     개인정보침해신고센터 등에 분쟁 해결이나 상담 등을 신청할 수
@@ -325,7 +337,7 @@ export const Privacy = () => {
                     </p>
                 </li>
                 <li>
-                    <h2>개인정보 처리방침 변경</h2>
+                    <h2 className={styles.heading}>개인정보 처리방침 변경</h2>
                     <ol className={styles.listCircledDecimal}>
                         <li>
                             이 개인정보 처리방침은 2023년 8월 18부터 적용됩니다.

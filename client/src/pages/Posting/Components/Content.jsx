@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useRef } from "react";
 
 import { FileUpload } from "../../../modules/FileUpload";
+import image from "../../../assets/image.png";
+
+import styles from "../../../styles/modules/Posting.module.css";
 
 export const Content = ({ props }) => {
-    const [img, setImage] = useState(null);
-    const { no, data, updateData, nextStep, prevStep, addStep } = props;
+    const { no, data, updateData, nextStep, prevStep, addStep, delStep } =
+        props;
+
+    const input = useRef(null);
 
     const update = (e) => {
         // check if file is uploaded
         if (e.target.files) {
-            setImage(URL.createObjectURL(e.target.files[0]));
             FileUpload(e.target.files[0], (url) => {
                 console.log("url: ", url);
                 updateData({
@@ -29,28 +33,43 @@ export const Content = ({ props }) => {
 
     return (
         <div>
-            <div className="content-header">
-                <h1>{no}</h1>
+            <div className={styles["content-header"]}>
+                <h1 className={styles["content-title-step"]}>{no}</h1>
                 <input
-                    className="input"
+                    className={styles["content-title-input"]}
                     name="title"
-                    placeholder="제목을 입력해주세요."
+                    placeholder="단계 제목을 입력해주세요."
                     value={data.title}
                     onChange={update}
                 />
+                <div
+                    className={styles["content-title-image"]}
+                    onClick={() => {
+                        input.current.click();
+                    }}
+                >
+                    <img src={image} alt="이미지" />
+                </div>
                 <input
+                    style={{ display: "none" }}
                     className="input"
                     name="img_url"
                     type="file"
                     onChange={update}
-                    value={img}
+                    value={""}
+                    ref={input}
                 />
-                <img src={data.img_url} alt="이미지 미리보기" />
             </div>
 
-            <div className="content-body">
+            <div className={styles["content-body"]}>
+                <div className={styles["content-body-img"]}>
+                    <img
+                        src={data.img_url === "" ? image : data.img_url}
+                        alt="이미지 미리보기"
+                    />
+                </div>
                 <textarea
-                    className="textarea"
+                    className={styles["content-body-content"]}
                     name="content"
                     value={data.content}
                     onChange={update}
@@ -58,14 +77,19 @@ export const Content = ({ props }) => {
                 />
             </div>
 
-            <div className="content-footer">
-                <button className="button" onClick={prevStep}>
-                    뒤로
-                </button>
-                {/* <button className="button" onClick={nextStep}>다음</button> */}
-                <button className="button" onClick={addStep}>
-                    단계 추가
-                </button>
+            <div className={styles["content-footer"]}>
+                <div>
+                    <button className="button" onClick={prevStep}>
+                        뒤로
+                    </button>
+                    {/* <button className="button" onClick={nextStep}>다음</button> */}
+                    <button className="button" onClick={addStep}>
+                        단계 추가
+                    </button>
+                    <button className="button" onClick={delStep}>
+                        이 단계 삭제
+                    </button>
+                </div>
                 <button className="button primary" onClick={nextStep}>
                     다음 단계로
                 </button>
