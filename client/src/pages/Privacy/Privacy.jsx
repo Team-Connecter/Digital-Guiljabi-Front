@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import styles from "../../styles/modules/Terms.module.css";
 
 export const Privacy = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     return (
         <main className="content-area__main">
             <h1>개인정보 처리방침</h1>
