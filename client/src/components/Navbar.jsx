@@ -24,7 +24,6 @@ export const Navbar = () => {
                 }
             })
             .then((res) => {
-                console.log(res);
                 setIsLogin(true);
                 setUserprofile(
                     res.data.imgUrl === null
@@ -40,6 +39,29 @@ export const Navbar = () => {
     useEffect(() => {
         setShowAddMenu(false);
     }, [location.pathname]);
+
+    const logout = () => {
+        const api_url = process.env.REACT_APP_API_URL;
+        const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
+        axios
+            .post(
+                `${api_url}/api/logout?logout_redirect_uri=${redirect_uri}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }
+            )
+            .then((res) => {
+                localStorage.removeItem("token");
+                setIsLogin(false);
+                navigate("/");
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
 
     return (
         <nav className="navbar">
@@ -67,7 +89,7 @@ export const Navbar = () => {
                                 >
                                     내 정보
                                 </div>
-                                <div>로그아웃</div>
+                                <div onClick={() => logout()}>로그아웃</div>
                             </div>
                         ) : null}
                     </div>
