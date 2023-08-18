@@ -6,12 +6,12 @@ export const PostList = ({ posts }) => {
         <ul>
             {posts.length > 0 ? (
                 posts.map((post) => (
-                    <li key={post.id}>
+                    <li className="card" key={post.id}>
                         <PostItem post={post} />
                     </li>
                 ))
             ) : (
-                <p>게시글이 없습니다.</p>
+                <p>일치하는 게시글이 없습니다.</p>
             )}
         </ul>
     );

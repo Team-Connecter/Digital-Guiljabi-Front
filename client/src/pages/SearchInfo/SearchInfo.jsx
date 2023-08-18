@@ -3,6 +3,7 @@ import { PostList } from "./components/PostList";
 import { Category } from "./components/Category";
 import { SeeMore } from "./components/SeeMore";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const SearchInfo = () => {
     const api_url = process.env.REACT_APP_API_URL;
@@ -16,6 +17,7 @@ export const SearchInfo = () => {
     const [categories, setCategories] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
+    const navigate = useNavigate();
 
     const searchChange = (e) => {
         setSearchText(e.target.value);
@@ -49,16 +51,14 @@ export const SearchInfo = () => {
 
                 const response = await axios.get(apiUrl, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                    },
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
                 });
                 const testDataFromServer = response.data;
                 setFilteredPosts([...testDataFromServer.list]);
                 setPosts([...testDataFromServer.list]);
             } catch (error) {
-                console.error("Error : ", error);
+                console.error("Error 발생 (게시글 목록 불러오기) : ", error);
             } finally {
                 setLoading(false);
             }
@@ -93,22 +93,37 @@ export const SearchInfo = () => {
     };
 
     if (loading) {
-        return <p>로딩중입니다.</p>;
+        return (
+            <main className="content-area__main">
+                <p>불러오는 중입니다.</p>
+            </main>
+        );
     }
 
+    const handleWritePost = () => {
+        navigate("/posting");
+    };
+
     return (
-        <div>
-            <h1>Search</h1>
+        <main className="content-area__main">
+            <h1>검색</h1>
             <div>
                 <input
+                    className="input primary"
                     type="text"
                     placeholder="검색어를 입력하세요."
                     value={searchText}
                     onChange={searchChange}
                 />
-                <button onClick={handleSearch}>검색</button>
+                <button className="button primary" onClick={handleSearch}>
+                    검색
+                </button>
                 <label>
-                    <select value={sortBy} onChange={sortChange}>
+                    <select
+                        className="select"
+                        value={sortBy}
+                        onChange={sortChange}
+                    >
                         <option value="POP">인기순</option>
                         <option value="NEW">최신순</option>
                     </select>
@@ -125,7 +140,9 @@ export const SearchInfo = () => {
                 <PostList posts={filteredPosts} />
             )}
             <SeeMore handleMore={handleMore} />
-            <button>글 작성</button>
-        </div>
+            <button className="button primary" onClick={handleWritePost}>
+                글 작성
+            </button>
+        </main>
     );
 };
