@@ -148,7 +148,7 @@ export const UserInfo = ({ user, onSave }) => {
                 </div>
                 <div>
                     <p>
-                        한줄소개 :
+                        한줄소개 :{" "}
                         {editing ? (
                             <textarea
                                 name="introduction"
