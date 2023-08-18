@@ -4,7 +4,8 @@ import { FileUpload } from "../../../modules/FileUpload";
 
 export const Content = ({ props }) => {
     const [img, setImage] = useState(null);
-    const { no, data, updateData, nextStep, prevStep, addStep } = props;
+    const { no, data, updateData, nextStep, prevStep, addStep, delStep } =
+        props;
 
     const update = (e) => {
         // check if file is uploaded
@@ -65,6 +66,9 @@ export const Content = ({ props }) => {
                 {/* <button className="button" onClick={nextStep}>다음</button> */}
                 <button className="button" onClick={addStep}>
                     단계 추가
+                </button>
+                <button className="button" onClick={delStep}>
+                    이 단계 삭제
                 </button>
                 <button className="button primary" onClick={nextStep}>
                     다음 단계로

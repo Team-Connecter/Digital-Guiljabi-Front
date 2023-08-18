@@ -75,6 +75,15 @@ export const Posting = () => {
         setStep(step + 1);
     };
 
+    const delStep = () => {
+        if (data.length === 3) {
+            alert("최소 1개의 컨텐츠가 있어야 합니다.");
+            return;
+        }
+        setData([...data.slice(0, step), ...data.slice(step + 1)]);
+        setStep(step - 1);
+    };
+
     /**
      * 데이터를 업데이트하는 함수
      * @param {*} s 스탭의 단계
@@ -152,6 +161,7 @@ export const Posting = () => {
             nextStep,
             prevStep,
             addStep,
+            delStep,
             updateData: (d) => {
                 updateData(step, d);
             }
