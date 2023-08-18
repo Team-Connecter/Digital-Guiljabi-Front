@@ -20,7 +20,7 @@ import {
 import { UserLayout } from "./components/Layout/UserLayout";
 import { AdminLayout } from "./components/Layout/AdminLayout";
 
-// import "./Firebase";
+import "./Firebase";
 
 function App() {
     // 카카오 로그인 구현으로 인한 임시 로그인 삭제

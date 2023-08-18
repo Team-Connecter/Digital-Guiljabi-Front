@@ -181,7 +181,10 @@ export const UserInfo = ({ user, onSave }) => {
             </div>
             <div>
                 {editing ? (
-                    <button className="button" onClick={handleSaveClick}>
+                    <button
+                        className="button primary"
+                        onClick={handleSaveClick}
+                    >
                         저장
                     </button>
                 ) : (
