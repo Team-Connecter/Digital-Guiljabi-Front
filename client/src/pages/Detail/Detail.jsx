@@ -10,6 +10,8 @@ import { Comments } from "./components/Comments";
 import { Write } from "./components/Write";
 import { CommentMore } from "./components/CommentMore";
 
+import styles from "../../styles/modules/Detail.module.css";
+
 export const Detail = () => {
     const api_url = process.env.REACT_APP_API_URL;
     const [comments, setComments] = useState([]);
@@ -220,13 +222,15 @@ export const Detail = () => {
                         modifyPost={handleModifyPost}
                         deletePost={handleDeletePost}
                     />
-                    {post.cards.map((card, index) => (
-                        <Form key={index} contents={card} />
-                    ))}
-                    {post.sources.length > 0 && <h3>출처</h3>}
-                    {post.sources.map((source, index) => (
-                        <Source key={index} contents={source} />
-                    ))}
+                    <section className={styles.content}>
+                        {post.cards.map((card, index) => (
+                            <Form key={index} contents={card} />
+                        ))}
+                        {post.sources.length > 0 && <h2>출처</h2>}
+                        {post.sources.map((source, index) => (
+                            <Source key={index} contents={source} />
+                        ))}
+                    </section>
                     {post.tags.map((tag, index) => (
                         <Tag key={index} contents={tag} />
                     ))}

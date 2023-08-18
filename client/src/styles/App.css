@@ -155,12 +155,25 @@ img {
 }
 
 .card {
+    display: flex;
+    justify-content: space-between;
     padding: 1.5rem;
     border: rgb(var(--white-3-color)) solid 0.094rem;
     border-radius: 0.5rem;
 }
 
+.card.vertical {
+    flex-direction: column;
+}
+
+.card.horizontal {
+    flex-direction: row;
+}
+
 .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-block-start: 1rem;
     margin-block-end: 1rem;
     list-style-type: none;
@@ -170,8 +183,25 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 1rem;
     grid-template-areas:
         ". ."
         ". .";
+}
+
+.thumbnail-wrapper {
+    display: flex;
+    border-radius: 0.4rem;
+    overflow: hidden;
+}
+
+.card.vertical .thumbnail-wrapper {
+    height: 15vh;
+}
+
+.card.horizontal .thumbnail-wrapper {
+    width: 15vw;
+}
+
+.thumbnail-wrapper img {
+    object-fit: cover;
 }
