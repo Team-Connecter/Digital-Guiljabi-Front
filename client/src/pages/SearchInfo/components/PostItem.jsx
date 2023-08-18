@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const PostItem = ({ post }) => {
     return (
         <div>
-            <img alt="" />
+            <img src={post.thumbnail} alt="" />
             <h3>
                 <Link to={`/detailInfo/${post.boardPk}`}>{post.title}</Link>
             </h3>
@@ -15,7 +15,7 @@ export const PostItem = ({ post }) => {
                 {post.tag && post.tag.length > 0 && (
                     <ul>
                         {post.tag.map((tag, index) => (
-                            <li key={index}>#{tag}</li>
+                            <li key={index}>{tag}</li>
                         ))}
                     </ul>
                 )}

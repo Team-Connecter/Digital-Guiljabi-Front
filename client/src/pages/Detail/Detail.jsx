@@ -223,7 +223,7 @@ export const Detail = () => {
                     {post.cards.map((card, index) => (
                         <Form key={index} contents={card} />
                     ))}
-                    <h3>출처</h3>
+                    {post.sources.length > 0 && <h3>출처</h3>}
                     {post.sources.map((source, index) => (
                         <Source key={index} contents={source} />
                     ))}
