@@ -3,11 +3,11 @@ import { PostList } from "./components/PostList";
 import { Category } from "./components/Category";
 import { SeeMore } from "./components/SeeMore";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const SearchInfo = () => {
     const api_url = process.env.REACT_APP_API_URL;
-    const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState(params.keyword);
     const [sortBy, setSortBy] = useState("POP");
     const [filteredPosts, setFilteredPosts] = useState([]);
     const [matchPosts, setMatchPosts] = useState(false);
@@ -18,6 +18,7 @@ export const SearchInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const navigate = useNavigate();
+    const params = useParams();
 
     const searchChange = (e) => {
         setSearchText(e.target.value);
