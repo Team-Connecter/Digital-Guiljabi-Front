@@ -252,7 +252,7 @@ export const Posting = () => {
 
     return (
         <main className="content-area__main">
-            <form className={styles.box} data-max={data.length}>
+            {/* <form className={styles.box} data-max={data.length}>
                 {data.map((d, i) => {
                     return (
                         <>
@@ -271,7 +271,7 @@ export const Posting = () => {
                     );
                 })}
                 <hr />
-            </form>
+            </form> */}
             {loadComponent()}
         </main>
     );
