@@ -86,6 +86,12 @@ export const Home = () => {
             });
     }, [checkName]);
 
+    const search = useCallback((e) => {
+        if (e.key === "Enter") {
+            navigate(`/search/${e.target.value}`);
+        }
+    });
+
     return (
         <>
             <header className={`content-area__header ${styles.header}`}>
@@ -102,6 +108,7 @@ export const Home = () => {
                     className={`input primary ${styles.search}`}
                     type="search"
                     placeholder="알고 싶은 것을 검색해 보세요."
+                    onKeyDown={search}
                 />
             </header>
             <main className="content-area__main">
