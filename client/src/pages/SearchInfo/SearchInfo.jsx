@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const SearchInfo = () => {
+    const params = useParams();
+
     const api_url = process.env.REACT_APP_API_URL;
     const [searchText, setSearchText] = useState(params.keyword);
     const [sortBy, setSortBy] = useState("POP");
@@ -18,7 +20,6 @@ export const SearchInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const navigate = useNavigate();
-    const params = useParams();
 
     const searchChange = (e) => {
         setSearchText(e.target.value);
