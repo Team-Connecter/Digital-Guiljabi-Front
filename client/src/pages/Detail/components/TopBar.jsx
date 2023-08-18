@@ -3,9 +3,9 @@ import React from "react";
 export const TopBar = ({ contents, modifyPost, deletePost }) => {
     return (
         <div>
-            <img src={contents.thumbnailUrl} alt="썸네일" />
+            <img src={contents.thumbnailUrl} />
             <h1>{contents.title}</h1>
-            <img src={contents.writerProfileUrl} alt="유저 프로필" />
+            <img src={contents.writerProfileUrl} />
             <label>{contents.writerName}</label>
             <label>{contents.updateAt}</label>
             {contents.isMine ? (
