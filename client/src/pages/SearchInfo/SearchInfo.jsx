@@ -49,12 +49,12 @@ export const SearchInfo = () => {
             try {
                 let apiUrl = `${api_url}/api/v1/boards?pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
 
-                if (searchText) {
-                    apiUrl = `${api_url}/api/v1/boards?q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
-                }
-
-                if (selectCategory) {
+                if (searchText && selectCategory) {
                     apiUrl = `${api_url}/api/v1/boards?categoryPk=${selectCategory}&q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+                } else if (searchText) {
+                    apiUrl = `${api_url}/api/v1/boards?q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+                } else if (selectCategory) {
+                    apiUrl = `${api_url}/api/v1/boards?categoryPk=${selectCategory}&q=${" "}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
                 }
 
                 const response = await axios.get(apiUrl);
