@@ -26,10 +26,10 @@
 .sectionSearch {
     display: flex;
     gap: 0.5rem;
-    width: 100%;
 }
 
 .sectionSearch input {
+    width: 100%;
     flex-grow: 1;
     text-overflow: ellipsis;
 }
@@ -42,4 +42,13 @@ hr {
     margin: 0 6%;
     border: none;
     border-top: 0.7rem dotted rgba(var(--app-text-color), 0.1);
+}
+
+.heading {
+    margin-bottom: 1rem;
+}
+
+.more {
+    display: flex;
+    justify-content: center;
 }

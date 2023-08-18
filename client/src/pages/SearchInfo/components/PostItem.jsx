@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 export const PostItem = ({ post }) => {
     return (
-        <div>
+        <>
+        <div className="thumbnail-wrapper">
             <img src={post.thumbnail} alt="" />
+            </div>
             <h3>
                 <Link to={`/detailInfo/${post.boardPk}`}>{post.title}</Link>
             </h3>
@@ -22,6 +24,6 @@ export const PostItem = ({ post }) => {
             </div>
             <p>좋아요: {post.likeCnt}</p>
             <p>북마크: {post.bookmarkCnt}</p>
-        </div>
+        </>
     );
 };

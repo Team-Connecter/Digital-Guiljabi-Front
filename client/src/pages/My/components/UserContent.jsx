@@ -20,7 +20,7 @@ export const UserContent = ({ bookmarks, writings }) => {
                 </button>
             </div>
             {activeTab === "bookmark" && (
-                <ul className="card-grid">
+                <ul className="cards card-grid">
                     {bookmarks.length > 0 ? (
                         bookmarks.map((bookmark, index) => (
                             <BookmarkItem key={index} bookmark={bookmark} />
@@ -31,7 +31,7 @@ export const UserContent = ({ bookmarks, writings }) => {
                 </ul>
             )}
             {activeTab === "writing" && (
-                <ul className="card-grid">
+                <ul className="cards card-grid">
                     {writings.length > 0 ? (
                         writings.map((writing, index) => (
                             <WritingItem key={index} writing={writing} />

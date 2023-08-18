@@ -5,6 +5,8 @@ import { SeeMore } from "./components/SeeMore";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+import styles from "../../styles/modules/SearchInfo.module.css";
+
 export const SearchInfo = () => {
     const params = useParams();
 
@@ -47,12 +49,12 @@ export const SearchInfo = () => {
             try {
                 let apiUrl = `${api_url}/api/v1/boards?pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
 
-                if (searchText) {
-                    apiUrl = `${api_url}/api/v1/boards?q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
-                }
-
-                if (selectCategory) {
+                if (searchText && selectCategory) {
                     apiUrl = `${api_url}/api/v1/boards?categoryPk=${selectCategory}&q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+                } else if (searchText) {
+                    apiUrl = `${api_url}/api/v1/boards?q=${searchText}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
+                } else if (selectCategory) {
+                    apiUrl = `${api_url}/api/v1/boards?categoryPk=${selectCategory}&q=${" "}&pageSize=${pageSize}&page=${currentPage}&sort=${sortBy}`;
                 }
 
                 const response = await axios.get(apiUrl);
@@ -109,17 +111,19 @@ export const SearchInfo = () => {
     return (
         <main className="content-area__main">
             <h1>검색</h1>
-            <div>
-                <input
-                    className="input primary"
-                    type="search"
-                    placeholder="검색어를 입력하세요."
-                    value={searchText}
-                    onChange={searchChange}
-                />
-                <button className="button primary" onClick={handleSearch}>
-                    검색
-                </button>
+            <section className={styles.sectionSearch}>
+                <div>
+                    <input
+                        className="input primary"
+                        type="search"
+                        placeholder="검색어를 입력하세요."
+                        value={searchText}
+                        onChange={searchChange}
+                    />
+                    <button className="button primary" onClick={handleSearch}>
+                        검색
+                    </button>
+                </div>
                 <label>
                     <select
                         className="select"
@@ -130,7 +134,7 @@ export const SearchInfo = () => {
                         <option value="NEW">최신순</option>
                     </select>
                 </label>
-            </div>
+            </section>
             <Category
                 handleCategoryChange={handleCategoryChange}
                 categories={categories}

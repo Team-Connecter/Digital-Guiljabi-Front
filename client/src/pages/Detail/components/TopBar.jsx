@@ -1,15 +1,26 @@
 import React from "react";
+import styles from "../../../styles/modules/Detail.module.css";
 
 export const TopBar = ({ contents, modifyPost, deletePost }) => {
     return (
-        <div>
-            {contents.thumnailUrl && (
-                <img src={contents.thumbnailUrl} alt="이미지" />
-            )}
-            <h1>{contents.title}</h1>
-            <img src={contents.writerProfileUrl} alt="이미지 영역" />
-            <label>{contents.writerName} </label>
-            <label>{contents.updateAt} </label>
+        <section className={styles.header}>
+            <div>
+                {contents.thumbnailUrl && (
+                    <div className={styles.header__imageWrapper}>
+                        <img src={contents.thumbnailUrl} alt="이미지" />
+                    </div>
+                )}
+
+                <h1 className={styles.header__title}>{contents.title}</h1>
+            </div>
+            <div className={styles.header__profile}>
+                <img src={contents.writerProfileUrl} alt="이미지 영역" />
+                <label>
+                    <strong>{contents.writerName}</strong>{" "}
+                </label>
+                <label>{contents.updateAt} </label>
+            </div>
+
             {contents.isMine ? (
                 <>
                     <button className="button" onClick={modifyPost}>
@@ -20,6 +31,6 @@ export const TopBar = ({ contents, modifyPost, deletePost }) => {
                     </button>
                 </>
             ) : null}
-        </div>
+        </section>
     );
 };
