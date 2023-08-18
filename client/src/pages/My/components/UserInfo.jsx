@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FileUpload } from "../../../modules/FileUpload";
 
 export const UserInfo = ({ user, onSave }) => {
     const api_url = process.env.REACT_APP_API_URL;
@@ -17,11 +18,7 @@ export const UserInfo = ({ user, onSave }) => {
         onSave(editUser);
 
         if (profilePicture) {
-            const imageUrl = await uploadProfilePicture(profilePicture);
-            if (imageUrl) {
-                const updatedUserProfile = { ...editUser, imgUrl: imageUrl };
-                sendUpdateUserInfo(updatedUserProfile);
-            }
+            uploadProfilePicture(profilePicture);
         } else {
             sendUpdateUserInfo(editUser);
         }
@@ -35,11 +32,12 @@ export const UserInfo = ({ user, onSave }) => {
     const handleProfileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfilePicture(reader.result);
+            let fr = new FileReader();
+            fr.onload = () => {
+                onSave({ ...user, imgUrl: fr.result });
             };
-            reader.readAsDataURL(file);
+            fr.readAsDataURL(file);
+            setProfilePicture(file);
         }
     };
 
@@ -74,28 +72,33 @@ export const UserInfo = ({ user, onSave }) => {
     };
 
     const uploadProfilePicture = async (imageFile) => {
-        try {
-            const formData = new FormData();
-            formData.append("file", imageFile);
-
-            const response = await axios.post(
-                `${api_url}/api/v1/users/info/profile`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
-                        "Content-Type": "multipart/form-data"
+        FileUpload(imageFile, (url) => {
+            axios
+                .post(
+                    `${api_url}/api/v1/users/info/profile`,
+                    { imgUrl: url },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`,
+                            "Content-Type": "application/json"
+                        }
                     }
-                }
-            );
+                )
+                .then((response) => {
+                    console.log("response: ", response);
+                })
+                .catch((error) => {
+                    console.error("Error 발생 (프로필 사진) : ", error);
+                });
 
-            return response.data.imageUrl;
-        } catch (error) {
-            console.error("Error 발생 (프로필 사진) : ", error);
-            return null;
-        }
+            let newUser = {
+                ...user,
+                imgUrl: url
+            };
+            onSave(newUser);
+        });
     };
 
     return (

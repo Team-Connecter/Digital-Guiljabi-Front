@@ -9,7 +9,10 @@ import "./style.css";
 export const WaitDetail = () => {
     const id = useParams().id;
     const [data, setData] = useState(null);
+    const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState(undefined); // [1
 
+    // 게시물을 불러오는 부분
     useEffect(() => {
         const api = process.env.REACT_APP_API_URL;
         axios
@@ -24,6 +27,17 @@ export const WaitDetail = () => {
             .catch((err) => console.error(err));
     }, [id]);
 
+    // 카테고리를 불러오는 부분
+    useEffect(() => {
+        const api = process.env.REACT_APP_API_URL;
+        axios
+            .get(`${api}/api/v1/categories/root`)
+            .then((res) => {
+                setCategories(res.data.list);
+            })
+            .catch((err) => console.error(err));
+    }, []);
+
     const [dialog, setDialog] = useState(false);
     const openDialog = () => setDialog(true);
     const closeDialog = () => setDialog(false);
@@ -33,13 +47,12 @@ export const WaitDetail = () => {
         axios
             .post(
                 `${api}/api/v1/admin/boards/${id}/approve`,
-                {},
+                {
+                    categoryPkList: [category]
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: {
-                        categoryPkList: [2]
                     }
                 }
             )
@@ -65,9 +78,18 @@ export const WaitDetail = () => {
                 <div className="wait-category">
                     <div>카테고리</div>
                     <div>
-                        {data?.categories.map((category, index) => (
-                            <span key={index}>{category}</span>
-                        ))}
+                        <select
+                            value={category}
+                            onChange={(e) => {
+                                setCategory(e.target.value);
+                            }}
+                        >
+                            {categories.map((category, index) => (
+                                <option key={index} value={category.pk}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
                 <div className="wait-hashtag">
