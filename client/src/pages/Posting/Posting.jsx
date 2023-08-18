@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// import styles from "../../styles/modules/Posting.module.css";
+import styles from "../../styles/modules/Posting.module.css";
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
@@ -252,7 +252,26 @@ export const Posting = () => {
 
     return (
         <main className="content-area__main">
-            {step}
+            <form className={styles.box} data-max={data.length}>
+                {data.map((d, i) => {
+                    return (
+                        <>
+                            <input
+                                class={styles["sr-only"]}
+                                type="radio"
+                                name="step-3"
+                                id={`step-3-${i + 1}`}
+                                checked={step === i}
+                            />
+                            <label
+                                class={styles.step}
+                                for={`step-3-${i + 1}`}
+                            ></label>
+                        </>
+                    );
+                })}
+                <hr />
+            </form>
             {loadComponent()}
         </main>
     );
