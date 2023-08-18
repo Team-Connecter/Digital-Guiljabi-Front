@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function TrendingList({ trendingData }) {
     return (
-        <div>
+        <div className="card-grid">
             {trendingData.map((item, index) => (
                 <div className="card" key={index}>
                     {/* <span>Category: {item.category}</span> */}
