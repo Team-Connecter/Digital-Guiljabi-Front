@@ -4,9 +4,11 @@ export default function TrendingList({ trendingData }) {
     return (
         <div className="cards card-grid">
             {trendingData.map((item, index) => (
-                <div className="card" key={index}>
+                <div className="card vertical" key={index}>
                     {/* <span>Category: {item.category}</span> */}
-                    <img src={item.thumbnail} alt="" />
+                    <div className="thumbnail-wrapper">
+                        <img src={item.thumbnail} alt="" />
+                    </div>
                     <h3>
                         <Link to={`/detailinfo/${item.boardPk}`}>
                             {item.title}

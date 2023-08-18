@@ -6,7 +6,7 @@ export const PostList = ({ posts }) => {
         <ul className="cards">
             {posts.length > 0 ? (
                 posts.map((post) => (
-                    <li className="card" key={post.id}>
+                    <li className="card vertical" key={post.id}>
                         <PostItem post={post} />
                     </li>
                 ))
