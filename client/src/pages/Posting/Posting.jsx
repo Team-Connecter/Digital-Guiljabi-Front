@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import styles from "../../styles/modules/Posting.module.css";
+// import styles from "../../styles/modules/Posting.module.css";
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
@@ -252,7 +252,7 @@ export const Posting = () => {
 
     return (
         <main className="content-area__main">
-            <form className={styles.box} data-max={data.length}>
+            {/* <form className={styles.box} data-max={data.length}>
                 {data.map((d, i) => {
                     return (
                         <>
@@ -271,7 +271,7 @@ export const Posting = () => {
                     );
                 })}
                 <hr />
-            </form>
+            </form> */}
             {loadComponent()}
         </main>
     );
