@@ -5,7 +5,9 @@ export const UserInfo = ({ user, onSave }) => {
     const api_url = process.env.REACT_APP_API_URL;
     const [editing, setEditing] = useState(false);
     const [editUser, setEditUser] = useState({ ...user });
-    const [profilePicture, setProfilePicture] = useState("");
+    const [profilePicture, setProfilePicture] = useState(
+        "https://boonbaebucket.s3.ap-northeast-2.amazonaws.com/point.png"
+    );
 
     const handleEditClick = () => {
         setEditing(true);
