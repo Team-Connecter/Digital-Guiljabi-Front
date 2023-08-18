@@ -3,7 +3,7 @@ import React from "react";
 export const Tag = ({ contents }) => {
     return (
         <div>
-            <label>#{contents}</label>
+            <label>{contents}</label>
         </div>
     );
 };
