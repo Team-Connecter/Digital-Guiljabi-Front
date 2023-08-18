@@ -48,6 +48,7 @@ function App() {
                     <Route path="detailInfo" element={<Detail />} />
                     <Route path="my" element={<My />} />
                     <Route path="search" element={<SearchInfo />} />
+                    <Route path="search/:keyword" element={<SearchInfo />} />
                     <Route path="posting" element={<Posting />} />
                     <Route path="/posting/:id" element={<Posting />} />
                     <Route path="login" element={<Login />} />

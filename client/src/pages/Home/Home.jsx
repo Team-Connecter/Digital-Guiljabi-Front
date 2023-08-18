@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TrendingList from "./components/TrendingList";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 import styles from "../../styles/modules/Home.module.css";
@@ -8,36 +8,17 @@ import logo from "../../assets/logo.svg";
 
 export const Home = () => {
     const navigate = useNavigate();
-    const exampleTrendingData = [
-        {
-            id: 1,
-            title: "시험용 도움말 1호",
-            description: "임시로 작성된 도움말의 설명문입니다.",
-            likes: 12,
-            category: "건강"
-        },
-        {
-            id: 2,
-            title: "시험용 도움말 2호",
-            description: "짧게 쓰인 설명문입니다.",
-            likes: 23,
-            category: "교통"
-        },
-        {
-            id: 3,
-            title: "시험용 도움말 3호",
-            description: "가짜 도움말입니다.",
-            likes: 11,
-            category: "전자기기"
-        },
-        {
-            id: 4,
-            title: "시험용 도움말 4호",
-            description: "설명용 텍스트입니다.",
-            likes: 9,
-            category: "복지"
-        }
-    ];
+    const [popPost, setPopPost] = useState([]);
+    useEffect(() => {
+        const api = process.env.REACT_APP_API_URL;
+        axios
+            .get(`${api}/api/v1/boards/popular?pageSize=4&page=1`)
+            .then((res) => {
+                console.log("res: ", res);
+                setPopPost(res.data.list);
+            })
+            .catch((err) => console.error(err));
+    }, []);
 
     const checkName = useCallback(
         (token) => {
@@ -86,6 +67,15 @@ export const Home = () => {
             });
     }, [checkName]);
 
+    const search = useCallback(
+        (e) => {
+            if (e.key === "Enter") {
+                navigate(`/search/${e.target.value}`);
+            }
+        },
+        [navigate]
+    );
+
     return (
         <>
             <header className={`content-area__header ${styles.header}`}>
@@ -102,12 +92,13 @@ export const Home = () => {
                     className={`input primary ${styles.search}`}
                     type="search"
                     placeholder="알고 싶은 것을 검색해 보세요."
+                    onKeyDown={search}
                 />
             </header>
             <main className="content-area__main">
                 <section>
-                    <h2>인기 있는 도움말</h2>
-                    <TrendingList trendingData={exampleTrendingData} />
+                    <h2>인기 있는 게시글</h2>
+                    <TrendingList trendingData={popPost} />
                     <button
                         className="button primary"
                         onClick={() => navigate("/search")}
