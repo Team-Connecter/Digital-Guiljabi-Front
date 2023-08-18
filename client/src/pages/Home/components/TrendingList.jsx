@@ -5,12 +5,17 @@ export default function TrendingList({ trendingData }) {
         <div>
             {trendingData.map((item, index) => (
                 <div className="card" key={index}>
-                    <span>Category: {item.category}</span>
+                    {/* <span>Category: {item.category}</span> */}
+                    <img src={item.thumbnail} alt="" />
                     <h3>
-                        <Link to={`/detailinfo/${item.id}`}>{item.title}</Link>
+                        <Link to={`/detailinfo/${item.boardPk}`}>
+                            {item.title}
+                        </Link>
                     </h3>
-                    <p>{item.description}</p>
-                    <span>Likes: {item.likes}</span>
+                    <p>{item.introduction}</p>
+                    <span>
+                        좋아요: {item.likeCnt} 북마크 : {item.bookmarkCnt}
+                    </span>
                 </div>
             ))}
         </div>

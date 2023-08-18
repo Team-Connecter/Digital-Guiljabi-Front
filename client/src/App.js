@@ -12,7 +12,10 @@ import {
     Admin,
     Posting,
     Request,
-    Login
+    Login,
+    Policy,
+    Privacy,
+    NotFound
 } from "./pages";
 import { UserLayout } from "./components/Layout/UserLayout";
 import { AdminLayout } from "./components/Layout/AdminLayout";
@@ -45,8 +48,13 @@ function App() {
                     <Route path="detailInfo" element={<Detail />} />
                     <Route path="my" element={<My />} />
                     <Route path="search" element={<SearchInfo />} />
+                    <Route path="search/:keyword" element={<SearchInfo />} />
                     <Route path="posting" element={<Posting />} />
+                    <Route path="/posting/:id" element={<Posting />} />
                     <Route path="login" element={<Login />} />
+                    <Route path="policy" element={<Policy />} />
+                    <Route path="privacy" element={<Privacy />} />
+                    <Route path="*" element={<NotFound />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Admin />} />

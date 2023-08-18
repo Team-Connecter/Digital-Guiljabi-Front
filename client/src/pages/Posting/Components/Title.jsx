@@ -6,12 +6,14 @@ export const Title = ({ props }) => {
     const update = (e) => {
         // check if file is uploaded
         if (e.target.files) {
-            let url = FileUpload(e.target.files[0]);
-            console.log("url: ", url);
-            updateData({
-                ...data,
-                [e.target.name]: url
+            FileUpload(e.target.files[0], (url) => {
+                console.log("url: ", url);
+                updateData({
+                    ...data,
+                    [e.target.name]: url
+                });
             });
+
             return;
         }
 
@@ -52,7 +54,7 @@ export const Title = ({ props }) => {
             </div>
 
             <div>
-                <button className="button" onClick={nextStep}>
+                <button className="button primary" onClick={nextStep}>
                     다음 단계로
                 </button>
             </div>

@@ -1,7 +1,7 @@
-// import axios from "axios";
+import axios from "axios";
 // import { useEffect } from "react";
 
-export const FileUpload = (file) => {
+export const FileUpload = (file, callback) => {
     if (!file) {
         alert("파일이 없습니다.");
         return;
@@ -15,26 +15,44 @@ export const FileUpload = (file) => {
         return;
     }
 
-    let imgUrl =
-        "https://kr.object.ncloudstorage.com/connecter-image/img_test.png";
+    const api_url = process.env.REACT_APP_API_URL;
 
-    // useEffect(() => {
-    //     const api_url = process.env.REACT_APP_API_URL;
-    //     const formData = new FormData();
-    //     formData.append("file", file);
-    //     axios
-    //         .post(`${api_url}/api/v1/files`, formData, {
-    //             headers: {
-    //                 "Content-Type": "multipart/form-data"
-    //             }
-    //         })
-    //         .then((response) => {
-    //             console.log("response: ", response);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error 발생 (파일 업로드): ", error);
-    //         });
-    // }, []);
+    const filenameDate = new Date().toISOString().slice(0, 10);
+    const filenameTime = new Date().toISOString().slice(11, 19);
+    const filename = `${filenameDate}_${filenameTime}_${file.name}`;
 
-    return imgUrl;
+    const uploadImage = (url) => {
+        axios
+            .put(url, file, {
+                headers: {
+                    "Content-Type": file.type
+                }
+            })
+            .then((res) => {
+                console.log(res);
+                setTimeout(() => {
+                    // alert("업로드 완료");
+                    callback(url.split("?")[0]);
+                }, 500);
+            })
+            .catch((err) => console.log(err));
+    };
+
+    axios
+        .post(
+            `${api_url}/api/v1/s3/presigned`,
+            {
+                image_name: filename
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }
+        )
+        .then((res) => {
+            uploadImage(res.data.presigned_url);
+        })
+        .catch((err) => console.log(err));
 };

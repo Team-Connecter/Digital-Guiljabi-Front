@@ -25,6 +25,8 @@ export const My = () => {
                 const userDataFromServer = response.data;
                 setUserData(userDataFromServer);
             } catch (error) {
+                alert("로그인이 필요합니다.");
+                window.location.href = "/login";
                 console.error("Error 발생 (유저 데이터) : ", error);
             }
         };
