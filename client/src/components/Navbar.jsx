@@ -10,6 +10,7 @@ export const Navbar = () => {
     const location = useLocation();
 
     const [isLogin, setIsLogin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [userprofile, setUserprofile] = useState(
         "https://boonbaebucket.s3.ap-northeast-2.amazonaws.com/point.png"
     );
@@ -41,6 +42,24 @@ export const Navbar = () => {
     useEffect(() => {
         setShowAddMenu(false);
     }, [location.pathname]);
+
+    useEffect(() => {
+        if (isLogin) {
+            const api_url = process.env.REACT_APP_API_URL;
+            axios
+                .get(`${api_url}/api/v1/token/isadmin`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                })
+                .then((res) => {
+                    setIsAdmin(res.data.isAdmin);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+    }, [location.pathname, isLogin]);
 
     const logout = () => {
         const api_url = process.env.REACT_APP_API_URL;
@@ -92,6 +111,15 @@ export const Navbar = () => {
                                     내 정보
                                 </div>
                                 <div onClick={() => logout()}>로그아웃</div>
+                                {isAdmin ? (
+                                    <div
+                                        onClick={() => {
+                                            navigate("/admin");
+                                        }}
+                                    >
+                                        관리자
+                                    </div>
+                                ) : null}
                             </div>
                         ) : null}
                     </div>
