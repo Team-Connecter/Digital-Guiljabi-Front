@@ -36,7 +36,7 @@ export const Navbar = () => {
                     setIsLogin(false);
                 });
         }, 1000);
-    }, []);
+    }, [location.pathname]);
 
     useEffect(() => {
         setShowAddMenu(false);
