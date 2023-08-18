@@ -1,0 +1,22 @@
+.sectionSearch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sectionSearch div {
+    display: flex;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.sectionSearch input {
+    width: 100%;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+}
+
+.sectionSearch button {
+    flex-shrink: 0;
+}

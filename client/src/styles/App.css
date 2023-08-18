@@ -116,6 +116,7 @@ img {
 }
 
 .textarea {
+    width: 100%;
     border: rgba(0, 0, 0, 0.15) solid 0.125rem;
     border-radius: 0.25rem;
 }
@@ -157,6 +158,12 @@ img {
     padding: 1.5rem;
     border: rgb(var(--white-3-color)) solid 0.094rem;
     border-radius: 0.5rem;
+}
+
+.cards {
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    list-style-type: none;
 }
 
 .card-grid {

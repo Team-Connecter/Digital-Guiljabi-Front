@@ -109,16 +109,25 @@ export const Home = () => {
                 <section>
                     <h2>인기 있는 도움말</h2>
                     <TrendingList trendingData={popPost} />
-                    <button
-                        className="button primary"
-                        onClick={() => navigate("/search")}
-                    >
-                        더 찾아보기
-                    </button>
+                    <div className={styles.more}>
+                        <button
+                            className="button primary"
+                            onClick={() => navigate("/search")}
+                        >
+                            더 찾아보기
+                        </button>
+                    </div>
                 </section>
                 <section>
-                    <h2>디지털 길잡이는 어떤 프로젝트인가요?</h2>
-                    <p>2023년, (중략)</p>
+                    <h2 className={styles.heading}>
+                        디지털 길잡이는 어떤 프로젝트인가요?
+                    </h2>
+                    <p>
+                        2023년 시작된 온라인 디지털 도움말 제작 프로젝트인{" "}
+                        <strong>디지털 길잡이</strong>는 디지털 소외계층 및
+                        약자들을 주요 타깃으로 한 친절하고 알찬 양질의 도움말을
+                        함께 만들어나가는 것을 목표로 합니다.
+                    </p>
                 </section>
             </main>
         </>

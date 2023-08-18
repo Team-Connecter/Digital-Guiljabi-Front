@@ -2,7 +2,7 @@ import styles from "../../styles/modules/Terms.module.css";
 
 export const Privacy = () => {
     return (
-        <main className="content-area__main">
+        <main className="content-area__main terms">
             <h1>개인정보 처리방침</h1>
             <p>
                 <a href="/">디지털 길잡이</a>는 「개인정보 보호법」 제30조에

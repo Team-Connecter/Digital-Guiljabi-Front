@@ -3,7 +3,7 @@ import { PostItem } from "./PostItem";
 
 export const PostList = ({ posts }) => {
     return (
-        <ul>
+        <ul className="cards">
             {posts.length > 0 ? (
                 posts.map((post) => (
                     <li className="card" key={post.id}>
