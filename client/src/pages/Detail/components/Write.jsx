@@ -17,6 +17,7 @@ export const Write = ({ submitComments }) => {
         <form onSubmit={handleSubmit}>
             <h3>댓글</h3>
             <textarea
+                className="textarea"
                 value={comment}
                 onChange={handleChange}
                 placeholder="댓글을 작성하세요"
@@ -24,7 +25,9 @@ export const Write = ({ submitComments }) => {
                 cols={50}
                 required
             />
-            <button type="submit">등록</button>
+            <button className="button" type="submit">
+                등록
+            </button>
         </form>
     );
 };
