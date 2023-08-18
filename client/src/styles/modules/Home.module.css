@@ -2,15 +2,44 @@
     text-align: center;
 }
 
+.sectionBrand {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    word-break: keep-all;
+}
+
 .logo {
-    height: 10vmax;
+    width: 4rem;
 }
 
 .title {
+    margin-bottom: 0.25em;
+    font-size: 3rem;
     font-weight: 900;
+    line-height: 1;
 }
 
-.search {
+.sectionSearch {
+    display: flex;
+    gap: 0.5rem;
     width: 100%;
-    margin-top: 1rem;
+}
+
+.sectionSearch input {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+}
+
+.sectionSearch button {
+    flex-shrink: 0;
+}
+
+hr {
+    margin: 0 6%;
+    border: none;
+    border-top: 0.7rem dotted rgba(var(--app-text-color), 0.1);
 }
