@@ -3,11 +3,13 @@ import { PostList } from "./components/PostList";
 import { Category } from "./components/Category";
 import { SeeMore } from "./components/SeeMore";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const SearchInfo = () => {
+    const params = useParams();
+
     const api_url = process.env.REACT_APP_API_URL;
-    const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState(params.keyword);
     const [sortBy, setSortBy] = useState("POP");
     const [filteredPosts, setFilteredPosts] = useState([]);
     const [matchPosts, setMatchPosts] = useState(false);
@@ -54,7 +56,7 @@ export const SearchInfo = () => {
                 setFilteredPosts([...testDataFromServer.list]);
                 setPosts([...testDataFromServer.list]);
             } catch (error) {
-                console.error("Error 발생 (게시글 목록 불러오기) : ", error);
+                console.error("Error 발생 (도움말 목록 불러오기) : ", error);
             } finally {
                 setLoading(false);
             }
@@ -106,7 +108,7 @@ export const SearchInfo = () => {
             <div>
                 <input
                     className="input primary"
-                    type="text"
+                    type="search"
                     placeholder="검색어를 입력하세요."
                     value={searchText}
                     onChange={searchChange}
@@ -131,7 +133,7 @@ export const SearchInfo = () => {
                 handleAll={handleAll}
             />
             {matchPosts ? (
-                <p>일치하는 게시물이 없습니다.</p>
+                <p>일치하는 도움말이 없습니다.</p>
             ) : (
                 <PostList posts={filteredPosts} />
             )}

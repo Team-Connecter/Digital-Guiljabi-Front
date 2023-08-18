@@ -4,7 +4,7 @@ export const Form = ({ contents }) => {
     return (
         <div>
             <h3>{contents.subTitle}</h3>
-            <img src={contents.imgUrl} alt="설명사진" />
+            <img src={contents.imgUrl} alt="이미지 영역" />
             <p>{contents.content}</p>
         </div>
     );

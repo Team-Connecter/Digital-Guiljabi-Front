@@ -33,7 +33,7 @@ export const FileUpload = (file, callback) => {
                 setTimeout(() => {
                     // alert("업로드 완료");
                     callback(url.split("?")[0]);
-                }, 2000);
+                }, 500);
             })
             .catch((err) => console.log(err));
     };

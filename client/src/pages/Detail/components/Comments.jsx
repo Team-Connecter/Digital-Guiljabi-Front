@@ -3,7 +3,7 @@ import React from "react";
 export const Comments = ({ contents, onDelete }) => {
     return (
         <div>
-            <img src={contents.profileUrl} alt="프로필" />
+            <img src={contents.profileUrl} alt="이미지 영역" />
             <label>{contents.username}</label>
             <label>{contents.createAt}</label>
             <p>{contents.content}</p>

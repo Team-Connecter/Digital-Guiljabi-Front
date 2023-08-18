@@ -36,7 +36,7 @@ export const Detail = () => {
             console.log(postDataFromServer);
             setPost(postDataFromServer);
         } catch (error) {
-            console.error("Error 발생 (게시글): ", error);
+            console.error("Error 발생 (도움말): ", error);
         }
     }, [api_url, params.id]);
 
@@ -119,7 +119,7 @@ export const Detail = () => {
     };
     const handleDeletePost = async () => {
         try {
-            if (window.confirm("해당 게시글을 정말 삭제하시겠습니까?")) {
+            if (window.confirm("해당 도움말을 정말 삭제하시겠습니까?")) {
                 await axios.delete(`${api_url}/api/v1/boards/${params.id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -130,8 +130,8 @@ export const Detail = () => {
                 alert("삭제를 취소합니다.");
             }
         } catch (error) {
-            console.error("Error 발생 (게시글 삭제): ", error);
-            alert("작성자가 아니면 게시글을 삭제할 수 없습니다!");
+            console.error("Error 발생 (도움말 삭제): ", error);
+            alert("작성자가 아니면 도움말을 삭제할 수 없습니다!");
         }
     };
 
@@ -223,7 +223,7 @@ export const Detail = () => {
                     {post.cards.map((card, index) => (
                         <Form key={index} contents={card} />
                     ))}
-                    <h3>출처</h3>
+                    {post.sources.length > 0 && <h3>출처</h3>}
                     {post.sources.map((source, index) => (
                         <Source key={index} contents={source} />
                     ))}
