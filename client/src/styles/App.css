@@ -154,8 +154,17 @@ img {
 }
 
 .card {
-    margin-bottom: 1rem;
     padding: 1.5rem;
     border: rgb(var(--white-3-color)) solid 0.094rem;
     border-radius: 0.5rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    grid-template-areas:
+        ". ."
+        ". .";
 }
