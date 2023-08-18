@@ -12,12 +12,15 @@ import {
     Admin,
     Posting,
     Request,
-    Login
+    Login,
+    Policy,
+    Privacy,
+    NotFound
 } from "./pages";
 import { UserLayout } from "./components/Layout/UserLayout";
 import { AdminLayout } from "./components/Layout/AdminLayout";
 
-import "./Firebase";
+// import "./Firebase";
 
 function App() {
     // 카카오 로그인 구현으로 인한 임시 로그인 삭제
@@ -48,6 +51,9 @@ function App() {
                     <Route path="posting" element={<Posting />} />
                     <Route path="/posting/:id" element={<Posting />} />
                     <Route path="login" element={<Login />} />
+                    <Route path="policy" element={<Policy />} />
+                    <Route path="privacy" element={<Privacy />} />
+                    <Route path="*" element={<NotFound />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Admin />} />

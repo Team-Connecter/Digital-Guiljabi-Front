@@ -123,7 +123,7 @@ export const Request = () => {
                     </label>
                 </div>
             )}
-            <br></br>
+            <br />
             <textarea
                 className="textarea"
                 value={reason}
@@ -132,7 +132,7 @@ export const Request = () => {
                 rows={4}
                 cols={50}
             />
-            <br></br>
+            <br />
             <button className="button primary" onClick={submitReason}>
                 제출
             </button>

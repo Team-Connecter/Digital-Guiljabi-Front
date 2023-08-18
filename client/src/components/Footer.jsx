@@ -7,7 +7,7 @@ export const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer__logo">
-                <img src={logo} alt="커넥터 로고"></img>
+                <img src={logo} alt="커넥터 로고" />
             </div>
             <div className="footer__links">
                 <p>© 2023 디지털 길잡이</p>
