@@ -91,7 +91,14 @@ export const UserInfo = ({ user, onSave }) => {
     return (
         <div>
             <div>
-                <img src={user.imgUrl} alt="프로필" />
+                <img
+                    src={
+                        user.imgUrl
+                            ? user.imgUrl
+                            : "https://boonbaebucket.s3.ap-northeast-2.amazonaws.com/point.png"
+                    }
+                    alt="프로필"
+                />
                 {editing && (
                     <input
                         type="file"
