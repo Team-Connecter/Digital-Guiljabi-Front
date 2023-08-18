@@ -54,7 +54,7 @@ export const Title = ({ props }) => {
             </div>
 
             <div>
-                <button className="button" onClick={nextStep}>
+                <button className="button primary" onClick={nextStep}>
                     다음 단계로
                 </button>
             </div>

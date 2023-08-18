@@ -106,7 +106,7 @@ export const Home = () => {
             </header>
             <main className="content-area__main">
                 <section>
-                    <h2>인기 있는 게시글</h2>
+                    <h2>인기 있는 도움말</h2>
                     <TrendingList trendingData={exampleTrendingData} />
                     <button
                         className="button primary"

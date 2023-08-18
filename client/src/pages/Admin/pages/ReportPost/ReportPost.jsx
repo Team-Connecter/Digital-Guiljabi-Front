@@ -9,7 +9,7 @@ export const ReportPost = () => {
 
     return (
         <section className="container">
-            <h1>신고된 게시물 목록</h1>
+            <h1>신고된 도움말 목록</h1>
             <select
                 className="select"
                 onChange={(e) => setParams({ ...params, sort: e.target.value })}

@@ -12,7 +12,7 @@ export const WaitDetail = () => {
     const [categories, setCategories] = useState([]);
     const [category, setCategory] = useState(undefined); // [1
 
-    // 게시물을 불러오는 부분
+    // 도움말을 불러오는 부분
     useEffect(() => {
         const api = process.env.REACT_APP_API_URL;
         axios
@@ -65,7 +65,7 @@ export const WaitDetail = () => {
 
     return (
         <section className="container">
-            <h1>게시물 승인/거부</h1>
+            <h1>도움말 승인/거부</h1>
             <div className="wait-header detail-header">
                 <div className="wait-title">
                     <div>제목</div>

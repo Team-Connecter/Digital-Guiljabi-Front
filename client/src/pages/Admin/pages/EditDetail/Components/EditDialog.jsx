@@ -46,13 +46,13 @@ export const EditDialog = ({ close, pk }) => {
                         className="button"
                         onClick={() => alertWiring(true)}
                     >
-                        게시글 숨기지 않기
+                        도움말 숨기지 않기
                     </button>
                     <button
                         className="button"
                         onClick={() => alertWiring(false)}
                     >
-                        게시글 숨기기
+                        도움말 숨기기
                     </button>
                 </div>
             </div>
