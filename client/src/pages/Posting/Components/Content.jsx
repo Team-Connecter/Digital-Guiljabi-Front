@@ -1,11 +1,15 @@
+import { useState } from "react";
+
 import { FileUpload } from "../../../modules/FileUpload";
 
 export const Content = ({ props }) => {
+    const [img, setImage] = useState(null);
     const { no, data, updateData, nextStep, prevStep, addStep } = props;
 
     const update = (e) => {
         // check if file is uploaded
         if (e.target.files) {
+            setImage(URL.createObjectURL(e.target.files[0]));
             FileUpload(e.target.files[0], (url) => {
                 console.log("url: ", url);
                 updateData({
@@ -39,6 +43,7 @@ export const Content = ({ props }) => {
                     name="img_url"
                     type="file"
                     onChange={update}
+                    value={img}
                 />
                 <img src={data.img_url} alt="이미지 미리보기" />
             </div>
