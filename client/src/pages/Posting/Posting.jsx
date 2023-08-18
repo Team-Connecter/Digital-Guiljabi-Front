@@ -108,7 +108,7 @@ export const Posting = () => {
                     imgUrl: d.data.img_url
                 };
             }),
-            tags: data[data.length - 1].data.tags.split(","),
+            tags: data[data.length - 1].data.tags.split(" "),
             sources: data[data.length - 1].data.source.split("\n")
         };
         console.log(JSON.stringify(payload));
@@ -119,7 +119,21 @@ export const Posting = () => {
                 .patch(`${api}/api/v1/boards`, payload, { headers })
                 .then((res) => {
                     // 게시물 등록 성공 시 my페이지로 이동
-                    if (res.status === 200) {
+                    if (res.status === 201) {
+                        alert("게시글 등록요청이 완료되었습니다.");
+                        window.location.href = "/my";
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } else {
+            axios
+                .post(`${api}/api/v1/boards`, payload, { headers })
+                .then((res) => {
+                    // 게시물 등록 성공 시 my페이지로 이동
+                    console.log(res);
+                    if (res.status === 201) {
                         alert("게시글 등록요청이 완료되었습니다.");
                         window.location.href = "/my";
                     }
@@ -128,19 +142,6 @@ export const Posting = () => {
                     console.error(err);
                 });
         }
-
-        axios
-            .post(`${api}/api/v1/boards`, payload, { headers })
-            .then((res) => {
-                // 게시물 등록 성공 시 my페이지로 이동
-                if (res.status === 200) {
-                    alert("게시글 등록요청이 완료되었습니다.");
-                    window.location.href = "/my";
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-            });
     };
 
     const loadComponent = () => {
@@ -225,7 +226,7 @@ export const Posting = () => {
                         {
                             type: "footer",
                             data: {
-                                tags: data.tags.join(","),
+                                tags: data.tags.join(" "),
                                 source: data.sources.join("\n")
                             }
                         }
