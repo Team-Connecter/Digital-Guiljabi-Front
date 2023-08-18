@@ -8,7 +8,7 @@ export const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar__logo" onClick={() => navigate("/")}>
-                <img src={logo} alt="디지털 길잡이 로고"></img>
+                <img src={logo} alt="디지털 길잡이 로고" />
             </div>
             <div className="navbar__links">
                 <Link to="/my">내 정보</Link>

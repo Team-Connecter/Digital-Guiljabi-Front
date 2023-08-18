@@ -49,6 +49,19 @@ code {
     margin: 0 auto;
 }
 
+.content-area > * {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opaicty: 1;
+    }
+}
+
 .content-area__header {
     padding: 5vh 6%;
 }

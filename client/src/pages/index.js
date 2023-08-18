@@ -6,3 +6,6 @@ export { SearchInfo } from "./SearchInfo";
 export { Admin } from "./Admin";
 export { Posting } from "./Posting";
 export { Login } from "./Login";
+export { Policy } from "./Policy";
+export { Privacy } from "./Privacy";
+export { NotFound } from "./NotFound";

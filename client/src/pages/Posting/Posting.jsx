@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
+// import styles from "../../styles/modules/Posting.module.css";
 import { Content } from "./Components/Content";
 import { Title } from "./Components/Title";
 import { Footer } from "./Components/Footer";
 
 export const Posting = () => {
+    const { id } = useParams();
+
     // 초기 데이터
     // 1. 타이틀 및 소개글
     // 2. 컨텐츠
@@ -105,19 +109,40 @@ export const Posting = () => {
                     imgUrl: d.data.img_url
                 };
             }),
-            tags: data[data.length - 1].data.tags.split(","),
+            tags: data[data.length - 1].data.tags.split(" "),
             sources: data[data.length - 1].data.source.split("\n")
         };
         console.log(JSON.stringify(payload));
 
-        axios
-            .post(`${api}/api/v1/boards`, payload, { headers })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        // 도움말 등록
+        if (id) {
+            axios
+                .patch(`${api}/api/v1/boards`, payload, { headers })
+                .then((res) => {
+                    // 도움말 등록 성공 시 my페이지로 이동
+                    if (res.status === 201) {
+                        alert("도움말 등록요청이 완료되었습니다.");
+                        window.location.href = "/my";
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } else {
+            axios
+                .post(`${api}/api/v1/boards`, payload, { headers })
+                .then((res) => {
+                    // 도움말 등록 성공 시 my페이지로 이동
+                    console.log(res);
+                    if (res.status === 201) {
+                        alert("도움말 등록요청이 완료되었습니다.");
+                        window.location.href = "/my";
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
     };
 
     const loadComponent = () => {
@@ -143,6 +168,77 @@ export const Posting = () => {
                 return <div>error</div>;
         }
     };
+
+    // 로그인 여부 확인
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("로그인이 필요합니다.");
+            window.location.href = "/login";
+        }
+        axios
+            .get(`${process.env.REACT_APP_API_URL}/api/v1/users/info/my`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((res) => {
+                if (res.data.isTokenValid === false) {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = "/login";
+                }
+            })
+            .catch((err) => {
+                alert("로그인이 필요합니다.");
+                window.location.href = "/login";
+            });
+    }, []);
+
+    // 도움말 수정시
+    useEffect(() => {
+        if (id) {
+            const api = process.env.REACT_APP_API_URL;
+            console.log("id", id);
+            axios
+                .get(`${api}/api/v1/boards/${id}`)
+                .then((res) => {
+                    console.log(res);
+                    const data = res.data;
+
+                    const newData = [
+                        {
+                            type: "title",
+                            data: {
+                                title: data.title,
+                                img_url: data.thumbnailUrl,
+                                content: data.introduction
+                            }
+                        },
+                        ...data.cards.map((d) => {
+                            return {
+                                type: "content",
+                                data: {
+                                    title: d.subTitle,
+                                    img_url: d.imgUrl,
+                                    content: d.content
+                                }
+                            };
+                        }),
+                        {
+                            type: "footer",
+                            data: {
+                                tags: data.tags.join(" "),
+                                source: data.sources.join("\n")
+                            }
+                        }
+                    ];
+                    setData(newData);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+    }, [id]);
 
     return (
         <main className="content-area__main">
